@@ -5,13 +5,18 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
-  timeout: 5000
-  encoding: unicode
-  database: rademade_crm_development
+   adapter: postgresql
+   encoding: unicode
+   database: myapp_development
+   pool: 5
+   username: postgres
+   password:
+   host: db
 
 development:
   <<: *default
+  host: db
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
