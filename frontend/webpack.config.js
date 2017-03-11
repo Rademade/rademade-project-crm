@@ -40,10 +40,11 @@ module.exports = {
     alias: {
       components: path.resolve('src/app/components'),
       containers: path.resolve('src/app/containers'),
-      constants: path.resolve('src/app/constants'),
-      reducers: path.resolve('src/app/reducers'),
-      actions: path.resolve('src/app/actions'),
-      assets: path.resolve('src/assets')
+      constants:  path.resolve('src/app/constants'),
+      reducers:   path.resolve('src/app/reducers'),
+      actions:    path.resolve('src/app/actions'),
+      selectors:  path.resolve('src/app/selectors'),
+      assets:     path.resolve('src/assets')
     }
   },
   plugins: [

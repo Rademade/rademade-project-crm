@@ -35,7 +35,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => 'http://localhost:4000',
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+  }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

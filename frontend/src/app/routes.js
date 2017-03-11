@@ -1,9 +1,14 @@
-import Main from 'containers/Main'
+import Main        from 'containers/Main'
+import ProjectList from 'containers/ProjectList'
 
 const routes = {
   childRoutes: [{
     path: '/',
-    component: Main
+    component: Main,
+    childRoutes: [
+      { path: 'projects', component: ProjectList }
+    ]
+
   }]
 };
 

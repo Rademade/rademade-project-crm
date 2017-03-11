@@ -1,4 +1,4 @@
-FROM node:7.6
+FROM node:7.0
 RUN mkdir /app
 WORKDIR /app
 RUN npm install -g yarn
