@@ -9,7 +9,13 @@ module.exports = {
     //progress: true,
     contentBase: './src',
     host: '0.0.0.0',
-    port: 4000
+    port: 4000,
+    proxy: {
+            '/api/**': {
+                target: 'http://back:3000',
+                changeOrigin: true
+              }
+            }
   },
   entry: {
     //"hotServer": "webpack/hot/dev-server",
@@ -44,6 +50,7 @@ module.exports = {
       reducers:   path.resolve('src/app/reducers'),
       actions:    path.resolve('src/app/actions'),
       selectors:  path.resolve('src/app/selectors'),
+			routes:     path.resolve('src/app/routes'),
       assets:     path.resolve('src/assets')
     }
   },

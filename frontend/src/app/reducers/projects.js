@@ -18,11 +18,11 @@ export default function projectList(state = initialState, action) {
     case GET_PROJECTS_REQUEST:
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
-    case GET_PROJECTS_SUCCESS:
-      return Object.assign(state, { isLoadingPending: false, isLoadingSuccess: true, projects: [...action.payload.projects] });
+      case GET_PROJECTS_SUCCESS:
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, projects: [...action.payload.projects] } };
 
     case GET_PROJECTS_FAILURE:
-      return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, projects: [1,2,4] };
+      return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, projects: [] };
 
     default:
       return state

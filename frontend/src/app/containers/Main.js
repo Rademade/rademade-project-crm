@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Menu                   from 'components/Menu'
 
 function mapStateToProps(state) {
   return state
@@ -15,7 +16,10 @@ class Main extends Component {
   render() {
     return (
       <div>
-        { this.props.children }
+				<Menu/>
+				<div>
+					{ this.props.children }
+				</div>
       </div>
     )
   }

@@ -5,8 +5,7 @@ import { apiMiddleware } from 'redux-api-middleware'
 import rootReducer from 'reducers'
 
 const loggerMiddleware = createLogger();
-const initialState = {
-};
+const initialState = {};
 
 let store = createStore(
   rootReducer,

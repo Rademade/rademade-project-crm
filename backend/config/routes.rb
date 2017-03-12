@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
-    resource :projects
-    resources :projects do
+    resources :projects, only: [:index, :show] do
       # TODO hook from jira
       resources :members
       resource :sprints do

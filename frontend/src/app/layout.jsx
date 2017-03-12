@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {green500} from 'material-ui/styles/colors'
 import Header from 'components/Header'
-import routes from './routes'
+import routes from 'routes/index'
 import store from './store'
 
 
