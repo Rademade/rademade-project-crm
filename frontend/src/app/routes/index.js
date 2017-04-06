@@ -1,4 +1,4 @@
-import Main        from 'containers/Main'
+import Main        from 'components/Main'
 
 import projects from 'routes/projects'
 // import departments from 'routes/departments'

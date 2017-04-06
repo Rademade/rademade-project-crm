@@ -3,7 +3,8 @@ import {connect}                       from 'react-redux'
 import { bindActionCreators }          from 'redux'
 import getProject                      from 'selectors/project'
 import * as ProjectActions             from 'actions/project'
-
+import { Form }                        from 'formsy-react'
+import FormProject                     from 'components/Form/FormProject'
 const actions = [ProjectActions];
 
 function mapStateToProps(state) {
@@ -24,13 +25,14 @@ class ProjectNew extends Component {
     const { newProject } = this.props.actions;
     newProject()
   }
-
+  
   render() {
-    const { project, actions } = this.props;
+    const { project, actions: { createProject } } = this.props;
     return (
-      <div>
-				 new project form
-      </div>
+      <FormProject
+        project={ project }
+        submit={ (project) => createProject(project) }
+      />
     )
   }
 }

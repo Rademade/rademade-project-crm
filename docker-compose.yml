@@ -4,6 +4,8 @@ services:
     image: postgres
   back:
     container_name: back
+    tty: true
+    stdin_open: true
     build:
       context: backend
       dockerfile: Dockerfile

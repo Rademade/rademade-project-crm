@@ -7,6 +7,7 @@ const initialState = {
   isLoadingError: false,
   isLoadingPending: false,
   isLoadingSuccess: false,
+  isFormValid: false,
   project: {}
 };
 

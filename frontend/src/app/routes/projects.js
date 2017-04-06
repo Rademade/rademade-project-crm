@@ -1,17 +1,22 @@
 import ProjectsIndex from 'containers/projects/index'
 import ProjectNew    from 'containers/projects/new/index'
+import { IndexRoute } from 'react-router'
 import ProjectShow   from 'containers/projects/show/index'
-
+import View          from 'components/View'
+const PATH = '/projects';
 export default {
-	path: 'projects',
-	component: ProjectsIndex,
+	path: PATH,
+	component: View,
+  indexRoute: {
+	  component: ProjectsIndex
+	},
 	childRoutes: [
 		{
-			path: '/projects/new',
+			path: PATH + '/new',
 			component: ProjectNew
 		},
 		{
-			path: '/projects/:id',
+			path: PATH + '/:id',
 			component: ProjectShow
 		}
 	]

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 
 import {List, ListItem} from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 
 import { Link } from 'react-router'

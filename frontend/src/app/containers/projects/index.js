@@ -8,7 +8,6 @@ import Projects                        from 'components/Projects'
 const actions = [ProjectActions]
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps', state)
   return {
     projectList: getProjectList(state)
   }
@@ -31,6 +30,7 @@ class ProjectsIndex extends Component {
     const { projectList, actions } = this.props;
     return (
       <div>
+        wdwd
         <Projects
           projects={ projectList.projects }
           actions= { actions }
