@@ -9,6 +9,7 @@ class List extends Component {
   }
 
   componentDidMount() {
+    this.props.actions.getDepartments()
   }
 
   render() {

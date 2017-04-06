@@ -3,6 +3,10 @@ import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
 import  List                             from './index'
 
+import * as actions                      from 'actions/departments'
+import getDepartments                    from 'selectors/departments'
+
+
 function mapStateToProps(state) {
   return {
     departments: getDepartments(state)
@@ -11,7 +15,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}), dispatch)
+    actions: bindActionCreators(Object.assign({ ...actions }), dispatch)
   }
 }
 
