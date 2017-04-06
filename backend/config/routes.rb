@@ -23,8 +23,8 @@ Rails.application.routes.draw do
         # resource :exceptense_criteria
       end
     end
-    resource :developers
-    resource :department
+    resources :developers
+    resources :departments
   end
 
 end
