@@ -5,7 +5,7 @@ import  List                             from './index'
 
 function mapStateToProps(state) {
   return {
-
+    departments: getDepartments(state)
   }
 }
 
