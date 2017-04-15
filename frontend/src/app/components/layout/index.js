@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 import { Route } from 'react-router'
 import Projects from './projects'
-import Departments from './departments'
+import Departments from './departments/container'
 
 import './style.css'
 export default class Layout extends Component {

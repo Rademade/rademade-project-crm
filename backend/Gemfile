@@ -3,13 +3,15 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 gem 'dry-system-rails'
-gem 'jsonapi-serializers'
 
 gem 'jira-ruby', :require => 'jira-ruby'
 
 gem 'rademade_admin', github: 'Rademade/rademade_admin', branch: 'feature/rails-5'
 gem 'pg'
 
+gem 'rabl'
+# Also add either `oj` or `yajl-ruby` as the JSON parser
+gem 'oj'
 group :development, :test do
   gem 'awesome_rails_console'
   gem 'hirb'

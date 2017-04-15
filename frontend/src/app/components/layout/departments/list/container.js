@@ -9,7 +9,7 @@ import getDepartments                    from 'selectors/departments'
 
 function mapStateToProps(state) {
   return {
-    departments: getDepartments(state)
+    departmentsState: getDepartments(state)
   }
 }
 
