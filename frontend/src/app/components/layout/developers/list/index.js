@@ -1,36 +1,38 @@
 import React, { Component, PropTypes } from 'react'
 import './style.css'
 import { Route } from 'react-router'
-import DepartmentTableItem from './table-item'
+import DeveloperTableItem from './table-item'
 
 class List extends Component {
 
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
+
   }
 
   componentDidMount() {
-    this.props.actions.getDepartments()
+    this.props.actions.getDevelopers()
   }
   componentDidUpdate(){
     console.log('componentDidUpdate', this.props)
   }
 
   render() {
-    const { departments, isLoadingPending } = this.props.departmentsState;
+    const { developers, isLoadingPending } = this.props.developersState;
     if (isLoadingPending) { return (<div>Loading</div>)}
     return (
      <table className="table">
         <thead>
           <tr>
-            <th>Отдел</th>
+            <th>Teammate</th>
+            <th>Department</th>
             <th>Управление</th>
           </tr>
         </thead>
         <tbody>
           {
-            departments.map((department) =>
-              <DepartmentTableItem key={department.id} department={department} onDelete={ () => this.props.actions.deleteDepartment(department.id) }/>
+            developers.map((developer) =>
+              <DeveloperTableItem key={developer.id} developer={developer} onDelete={ () => this.props.actions.deleteDeveloper(developer.id) }/>
             )
           }
         </tbody>

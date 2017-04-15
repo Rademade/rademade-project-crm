@@ -9,11 +9,11 @@ import _ from 'lodash'
 
 class Departments extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.submitNewDepartment = this.submitNewDepartment.bind(this)
     this.getDepartment = this.getDepartment.bind(this)
-
+    console.log('Departments', this.props)
   }
 
   componentDidMount() {
