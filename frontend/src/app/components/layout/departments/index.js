@@ -5,26 +5,24 @@ import DepartmentsList from './list/container'
 import DepartmentForm from './form'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
+import { push } from 'react-router-redux'
+import store from 'store'
 
+import Department from 'models/department'
 
 class Departments extends Component {
 
   constructor(props) {
     super(props)
-    this.submitNewDepartment = this.submitNewDepartment.bind(this)
     this.getDepartment = this.getDepartment.bind(this)
-    console.log('Departments', this.props)
   }
 
   componentDidMount() {
   }
 
-  submitNewDepartment(department) {
-    if (department.id){
-      this.props.actions.updateDepartment(department)
-    } else {
-      this.props.actions.createDepartment(department)
-    }
+  submit(department){
+    new Department(department).save()
+    store.dispatch(push('/departments'))
   }
 
   getDepartment(id){
@@ -37,13 +35,14 @@ class Departments extends Component {
   }
 
   render() {
+    console.log('rerender')
     return (
       <div>
         <DepartmentsList/>
         <Route exact path="/departments" component={ () => { return <Link to="/departments/new">Добавить</Link> } }/>
 
         <Route path='/departments/:id'
-               component={ ({ match }) => { return <DepartmentForm submit={ (department) => this.submitNewDepartment(department) } department={ this.getDepartment(match.params.id) } /> } }/>
+               component={ ({ match }) => { return <DepartmentForm submit={ this.submit.bind(this) } department={ this.getDepartment(match.params.id) } /> } }/>
       </div>
     )
   }

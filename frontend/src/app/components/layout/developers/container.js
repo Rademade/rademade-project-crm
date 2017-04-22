@@ -3,7 +3,6 @@ import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
 import  Developers                      from './index'
 import getDevelopers                    from 'selectors/developers'
-import { createDeveloper, updateDeveloper } from 'actions/developers'
 
 function mapStateToProps(state) {
   return {
@@ -13,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({ createDeveloper: createDeveloper, updateDeveloper: updateDeveloper}), dispatch)
+    actions: bindActionCreators(Object.assign({}), dispatch)
   }
 }
 

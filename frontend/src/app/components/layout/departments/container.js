@@ -3,9 +3,6 @@ import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
 import  Departments                      from './index'
 import getDepartments                    from 'selectors/departments'
-import { createDepartment, updateDepartment } from 'actions/departments'
-
-
 
 function mapStateToProps(state) {
   return {
@@ -15,7 +12,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({ createDepartment: createDepartment, updateDepartment: updateDepartment}), dispatch)
+    actions: bindActionCreators(Object.assign({}), dispatch)
   }
 }
 

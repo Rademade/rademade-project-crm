@@ -3,28 +3,25 @@ import './style.css'
 import { Route } from 'react-router'
 import DevelopersList from './list/container'
 import DeveloperForm from './form/container'
+import Developer from 'models/developer'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-
-
+import store from 'store'
+import { push } from 'react-router-redux'
 class Developers extends Component {
 
   constructor() {
     super()
     this.submitNewDeveloper = this.submitNewDeveloper.bind(this)
     this.getDeveloper = this.getDeveloper.bind(this)
-
   }
 
   componentDidMount() {
   }
 
   submitNewDeveloper(developer) {
-    if (developer.id){
-      this.props.actions.updateDeveloper(developer)
-    } else {
-      this.props.actions.createDeveloper(developer)
-    }
+    new Developer(developer).save()
+    store.dispatch(push('/developers'))
   }
 
   getDeveloper(id){

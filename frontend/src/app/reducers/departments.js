@@ -1,12 +1,17 @@
-import { GET_DEPARTMENTS_REQUEST,
-         GET_DEPARTMENTS_SUCCESS,
-         GET_DEPARTMENTS_FAILURE,
-         POST_DEPARTMENT_SUCCESS,
-         DELETE_DEPARTMENT_SUCCESS,
-         UPDATE_DEPARTMENT_SUCCESS
+import {
+  GET_DEPARTMENTS_REQUEST,
+  GET_DEPARTMENTS_SUCCESS,
+  GET_DEPARTMENTS_FAILURE,
+  CREATE_DEPARTMENT_REQUEST,
+  CREATE_DEPARTMENT_SUCCESS,
+  CREATE_DEPARTMENT_FAILURE,
+  UPDATE_DEPARTMENT_REQUEST,
+  UPDATE_DEPARTMENT_SUCCESS,
+  UPDATE_DEPARTMENT_FAILURE,
+  DELETE_DEPARTMENT_REQUEST,
+  DELETE_DEPARTMENT_SUCCESS,
+  DELETE_DEPARTMENT_FAILURE
 } from 'constants/action_types/departments'
-import _ from 'lodash'
-
 
 const initialState = {
   isLoadingError: false,
@@ -23,21 +28,21 @@ export default function departmentsState(state = initialState, action) {
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_DEPARTMENTS_SUCCESS:
-      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, departments: [...action.payload.departments] } };
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, departments: [...action.items] } };
 
     case GET_DEPARTMENTS_FAILURE:
       return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, departments: [] };
 
-    case POST_DEPARTMENT_SUCCESS:
+    case CREATE_DEPARTMENT_SUCCESS:
       return {
         isLoadingPending: false,
         isLoadingError: false,
         isLoadingSuccess: true,
-        departments: [...state.departments, action.payload ]
+        departments: [...state.departments, action.item ]
       };
 
     case DELETE_DEPARTMENT_SUCCESS:
-      _.remove(state.departments, { id: action.payload.id })
+      _.remove(state.departments, { id: action.id })
       return {
         isLoadingPending: false,
         isLoadingError: false,
@@ -46,8 +51,8 @@ export default function departmentsState(state = initialState, action) {
       };
 
     case UPDATE_DEPARTMENT_SUCCESS:
-      let index  = _.findIndex(state.departments, { id: action.payload.department.id })
-      state.departments[index] = action.payload.department
+      let index  = _.findIndex(state.departments, { id: action.item.id })
+      state.departments[index] = action.item
       return {
         isLoadingPending: false,
         isLoadingError: false,

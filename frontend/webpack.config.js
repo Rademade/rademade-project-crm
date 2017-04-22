@@ -55,7 +55,9 @@ module.exports = {
       actions:    path.resolve('src/app/actions'),
       selectors:  path.resolve('src/app/selectors'),
 			routes:     path.resolve('src/app/routes'),
-      assets:     path.resolve('src/assets')
+      assets:     path.resolve('src/assets'),
+      models:     path.resolve('src/app/models'),
+      store: path.resolve('src/app/store')
     }
   },
   plugins: [

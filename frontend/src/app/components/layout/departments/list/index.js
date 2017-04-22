@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import './style.css'
 import { Route } from 'react-router'
 import DepartmentTableItem from './table-item'
+import Department from 'models/department'
 
 class List extends Component {
 
@@ -10,10 +11,9 @@ class List extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.getDepartments()
+    Department.query()
   }
   componentDidUpdate(){
-    console.log('componentDidUpdate', this.props)
   }
 
   render() {
@@ -30,7 +30,7 @@ class List extends Component {
         <tbody>
           {
             departments.map((department) =>
-              <DepartmentTableItem key={department.id} department={department} onDelete={ () => this.props.actions.deleteDepartment(department.id) }/>
+              <DepartmentTableItem key={department.id} department={department} onDelete={ () => department.delete() }/>
             )
           }
         </tbody>

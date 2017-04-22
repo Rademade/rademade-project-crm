@@ -17,6 +17,7 @@ class DeveloperTableItem extends Component {
     return (
        <tr>
          <th>{developer.name}</th>
+         <th>{developer.department.name}</th>
          <th>
            <Link to={ `/developers/${developer.id}` }>Edit</Link>
            <button onClick={this.props.onDelete}>Delete</button>

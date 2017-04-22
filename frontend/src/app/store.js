@@ -3,8 +3,11 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { apiMiddleware } from 'redux-api-middleware'
 import rootReducer from 'reducers'
+import { routerReducer, routerMiddleware } from 'react-router-redux'
+import history from './history'
 
 const loggerMiddleware = createLogger();
+const middleware = routerMiddleware(history)
 const initialState = {
 };
 
@@ -14,7 +17,8 @@ let store = createStore(
   applyMiddleware(
     apiMiddleware,
     thunkMiddleware,
-    loggerMiddleware
+    loggerMiddleware,
+    middleware
   )
 );
 

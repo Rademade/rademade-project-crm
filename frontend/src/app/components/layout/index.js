@@ -8,7 +8,7 @@ import './style.css'
 export default class Layout extends Component {
 
   constructor(props){
-    super(props)
+    super(props);
   }
 
   componentDidMount(){

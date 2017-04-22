@@ -2,22 +2,29 @@ import React, { Component, PropTypes } from 'react'
 import './style.css'
 import { Route } from 'react-router'
 import _ from 'lodash'
-
+import Department from 'models/department'
 class DeveloperForm extends Component {
 
   constructor(props){
     super(props)
     if(_.isEmpty(this.props.departments)){
-      this.props.actions.getDepartments()
+      Department.query()
     }
-    this.state = {...this.props.developer}
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.state = {department:{}, ...this.props.developer}
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleDepartmentChange = this.handleDepartmentChange.bind(this)
     this.submit = this.submit.bind(this)
   }
 
   submit(e){
     e.preventDefault();
     this.props.submit(this.state)
+  }
+  
+  handleDepartmentChange(event) {
+    this.setState({
+      department: _.find(this.props.departments, {id: event.target.value * 1})
+    });
   }
 
   handleInputChange(event) {
@@ -27,7 +34,6 @@ class DeveloperForm extends Component {
     this.setState({
       [name]: value
     });
-    console.log('handleInputChange', this.state)
   }
 
   componentDidMount() {
@@ -52,12 +58,11 @@ class DeveloperForm extends Component {
           <div className="form-group">
             <label htmlFor="exampleSelect1">Department</label>
             <select className="form-control"
-                    name="departmentId"
                     value={this.state.department.id}
-                    onChange={this.handleInputChange}
+                    onChange={this.handleDepartmentChange}
                     id="exampleSelect1">
               { this.props.departments.map((department)=> {
-                return <option value={department.id} key={department.id}>{department.name}</option>
+                return <option onClick={() => this.handleDepartmentChange(department)}  value={department.id} key={department.id}>{department.name}</option>
               } )}
             </select>
           </div>

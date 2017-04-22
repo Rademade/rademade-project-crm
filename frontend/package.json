@@ -9,9 +9,12 @@
     "deploy-windows": "SET NODE_ENV=production & webpack --config webpack.production.config.js"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-runtime": "6.x",
     "body-parser": "^1.15.2",
+    "change-case-keys": "^0.0.4",
     "lodash": "^4.17.4",
+    "lodash-humps": "^2.0.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-cookie": "^1.0.5",

@@ -1,14 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import  Index from 'components/index/container'
 import store from './store'
+import history from './history'
+
 const Layout = () => (
   <Provider store={store} key="provider">
       <div>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <Route path="/" component={Index}/>
-        </BrowserRouter>
+        </ConnectedRouter>
       </div>
   </Provider>
 );

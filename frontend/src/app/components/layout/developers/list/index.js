@@ -2,19 +2,17 @@ import React, { Component, PropTypes } from 'react'
 import './style.css'
 import { Route } from 'react-router'
 import DeveloperTableItem from './table-item'
-
+import Developer from 'models/developer'
 class List extends Component {
 
   constructor(){
     super()
-
   }
 
   componentDidMount() {
-    this.props.actions.getDevelopers()
+    Developer.query()
   }
   componentDidUpdate(){
-    console.log('componentDidUpdate', this.props)
   }
 
   render() {
@@ -32,7 +30,7 @@ class List extends Component {
         <tbody>
           {
             developers.map((developer) =>
-              <DeveloperTableItem key={developer.id} developer={developer} onDelete={ () => this.props.actions.deleteDeveloper(developer.id) }/>
+              <DeveloperTableItem key={developer.id} developer={developer} onDelete={ () => developer.delete() }/>
             )
           }
         </tbody>
