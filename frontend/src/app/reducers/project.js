@@ -1,7 +1,7 @@
 import { NEW_PROJECT,
       	 GET_PROJECT_REQUEST,
          GET_PROJECT_SUCCESS,
-         GET_PROJECT_FAILURE } from 'constants/action_types/project'
+         GET_PROJECT_FAILURE } from 'constants/action_types/projects'
 
 const initialState = {
   isLoadingError: false,
@@ -22,7 +22,7 @@ export default function project(state = initialState, action) {
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_PROJECT_SUCCESS:
-      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, project: action.payload.project } };
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, project: action.item } };
 
     case GET_PROJECT_FAILURE:
       return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, project: null };
