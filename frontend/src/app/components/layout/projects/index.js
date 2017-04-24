@@ -25,7 +25,7 @@ class Projects extends Component {
 
   getProject(id){
     if (id == 'new'){
-      return { project: {} }
+      return  { members: [] }
     } else {
       return _.find(this.props.projects, { id: id*1 } )
     }
