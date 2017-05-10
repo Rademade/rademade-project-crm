@@ -3,7 +3,7 @@ import './style.css'
 import { Route } from 'react-router'
 
 import DevelopersList from './list/container'
-import DeveloperNew from './new'
+import DeveloperNew from './new/container'
 import DeveloperEdit from './edit'
 
 import Developer from 'models/developer'

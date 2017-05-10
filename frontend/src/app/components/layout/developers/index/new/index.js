@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Developer from 'models/developer'
 import DeveloperForm from 'components/layout/developers/form/container';
-
 class DeveloperNew extends Component {
 
   constructor(props){
@@ -10,8 +9,8 @@ class DeveloperNew extends Component {
   }
 
   onSubmit(developer) {
-    console.log(developer)
     new Developer(developer).save()
+    this.props.actions.toDepartments()
   }
   
   render() {

@@ -6,6 +6,11 @@ import rootReducer from 'reducers'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import history from './history'
 
+//import 'babel-polyfill'
+//import createSagaMiddleware from 'redux-saga'
+//import rootSaga from './sagas/root'
+//const sagaMiddleware = createSagaMiddleware()
+
 const loggerMiddleware = createLogger();
 const middleware = routerMiddleware(history)
 const initialState = {
@@ -18,8 +23,11 @@ let store = createStore(
     apiMiddleware,
     thunkMiddleware,
     loggerMiddleware,
+    //sagaMiddleware,
     middleware
   )
 );
+
+//sagaMiddleware.run(rootSaga)
 
 export default store;
