@@ -1,3 +1,3 @@
 object @project
-attributes :id, :name
+extends('api/projects/show')
 

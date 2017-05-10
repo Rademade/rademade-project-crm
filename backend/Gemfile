@@ -13,8 +13,11 @@ gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
 group :development, :test do
+  gem 'brakeman' 
   gem 'awesome_rails_console'
   gem 'hirb'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
 end
 

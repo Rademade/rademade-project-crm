@@ -82,7 +82,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bower-rails (0.11.0)
+    brakeman (3.6.1)
     builder (3.2.3)
+    byebug (9.0.6)
     cancan (1.6.10)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
@@ -179,6 +181,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     pry-rails (0.3.5)
       pry (>= 0.9.10)
     rabl (0.13.1)
@@ -254,11 +259,14 @@ PLATFORMS
 DEPENDENCIES
   annotate!
   awesome_rails_console
+  brakeman
   dry-system-rails
   hirb
   jira-ruby
   oj
   pg
+  pry
+  pry-byebug
   rabl
   rademade_admin!
   rails (~> 5.0.1)

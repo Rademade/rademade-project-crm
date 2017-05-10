@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import MemberListItem       from './member-list-item'
+import _                    from 'lodash'
 class ProjectMemberList extends Component {
 
   constructor(props){
     super(props)
     this.addNewMember = this.addNewMember.bind(this)   
-    this.state = {
-      members: this.props.members
-    }
   }
- 
+
   addNewMember(e){
     e.preventDefault()
     this.props.onNew()
@@ -25,17 +23,25 @@ class ProjectMemberList extends Component {
   }
 
   componentDidUpdate(){
-    this.state = {
-      members: this.props.members
-    }
   }
 
   render() {
       console.log('render list')
+      let members = _.reject(this.props.members, (member) => member._destroy)
+
       return (
         <div>
           <span>Project Team</span>
-          { this.state.members.map((member, i) => <MemberListItem member={member} id={i} onDelete={ () => this.onDelete(i) }  developers={this.props.developers}/> ) }
+         { members.map((member, i) =>
+            <MemberListItem
+              member={member}
+              id={i}
+              key={i}
+              onChange={(member) => this.props.onMemberChange(i, member)}
+              onDelete={ () => this.onDelete(i) }
+              developers={this.props.developers}/> 
+              )
+          }
          
           <button onClick={this.addNewMember} type="submit" className="btn btn-primary">Add Teammate</button>
         </div>

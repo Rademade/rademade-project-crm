@@ -45,7 +45,8 @@ class Abstract {
         }
         return items; }],
     }).then((response) => {
-        store.dispatch({type: this.ACTION_TYPES.QUERY_SUCCESS, items: response.data})
+        console.log('query')
+        store.dispatch({type: this.ACTION_TYPES.QUERY_SUCCESS, items: changeCaseKeys(response.data, 'camelize') })
       })
       .catch( (error) => {
          store.dispatch({type: this.ACTION_TYPES.QUERY_FAILURE, error: error})
@@ -65,9 +66,9 @@ class Abstract {
     axios({
       method: 'put',
       url: `${this.constructor.URL}/${this.id}`,
-      data: changeCaseKeys(this.serialize(), 'underscored'),
-    }).then((response) => {
-        store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_SUCCESS, item: this})
+      data: this.serialize().underscored(),
+    }).then(({ data }) => {
+        store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_SUCCESS, item: new this.constructor(data).camelize() })
       })
       .catch((error) => {
         store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_FAILURE, error: error})
@@ -79,9 +80,9 @@ class Abstract {
     axios({
       method: 'post',
       url: this.constructor.URL,
-      data: changeCaseKeys(this.serialize(), 'underscored'),
+      data: this.serialize().underscored(),
     }).then((response) => {
-        store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_SUCCESS, item: new this.constructor(response.data)})
+        store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_SUCCESS, item: this.camelize() })
       })
       .catch((error) => {
         store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_FAILURE, error: error})
@@ -100,7 +101,18 @@ class Abstract {
         store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_FAILURE, error: error})
       });
   }
-  serialize() { return this }
+  camelize(){
+    changeCaseKeys(this, 'camelize')
+    return this
+  }
+  underscored() {
+    changeCaseKeys(this, 'underscored')
+    return this
+  }
+  
+  remove() {
+    this._destroy = true 
+  }
 }
 
-export default Abstract
+export default  Abstract

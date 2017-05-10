@@ -65,7 +65,6 @@ class DeveloperForm extends Component {
                    onChange={this.handleInputChange}
                    className="form-control" placeholder="Toggl ID"/>
           </div>
-          <PjectTeamList project={this.popps.project}/>
           <div className="form-group">
             <label htmlFor="exampleSelect1">Department</label>
             <select className="form-control"

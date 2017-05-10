@@ -16,11 +16,13 @@ class ProjectForm extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleProjectChange = this.handleProjectChange.bind(this)
     this.addMember = this.addMember.bind(this)
+    this.deleteMember = this.deleteMember.bind(this)   
     this.submit = this.submit.bind(this)
   }
 
   submit(e){
     e.preventDefault();
+    console.log(this.state)
     this.props.submit(this.state)
   }
   
@@ -29,9 +31,19 @@ class ProjectForm extends Component {
       project: _.find(this.props.projects, {id: event.target.value * 1})
     });
   }
+ 
+  onMemberChange(i, member){
+   let members = [...this.state.members] 
+   members.splice(i, 1, member)
+   this.setState({ members: members })
+  }
+ 
   deleteMember(i){
-    this.state.members.splice(i, 1)
-    this.setState({ members: [...this.state.members] })
+    let { members } = this.state
+    let deletedMember = members[i]
+    console.log('delete members', members)
+    members.splice(i, 1, { _destroy: true, ...deletedMember })
+    this.setState({...this.state,  members: [...members] })
   }
 
   addMember(member){
@@ -55,6 +67,7 @@ class ProjectForm extends Component {
   }
 
   render() {
+    console.log('render')
     const { developers } = this.props;
     if(!developers || !this.props.project) { return <div>loading..</div> }
     return (
@@ -71,12 +84,14 @@ class ProjectForm extends Component {
           <div className="form-group">
             <label htmlFor="disabledTextInput">Toggl ID</label>
             <input type="text"
-                   name="togglId"
-                   value={this.state.togglId}
+                   name="togglPid"
+                   value={this.state.togglPid}
                    onChange={this.handleInputChange}
                    className="form-control" placeholder="Toggl ID"/>
           </div>
-          <ProjectMemberList members={this.state.members} onNew={this.addMember} onDelete={this.deleteMember}  developers={developers}/>
+          { console.log(this.state) }
+          <ProjectMemberList
+            members={this.state.members} onNew={this.addMember} onMemberChange={this.onMemberChange.bind(this)}  onDelete={this.deleteMember}  developers={developers}/>
           <button onClick={this.submit} type="submit" className="btn btn-primary">Добавить</button>
         </fieldset>
       </form>

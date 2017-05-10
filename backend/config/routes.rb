@@ -6,16 +6,15 @@ Rails.application.routes.draw do
     admin_resources :departments
     admin_resources :developers
     admin_resources :projects do
-
+     
     end
     # admin_resources :project_member
     # admin_resources :project_member
   end
 
   namespace :api, defaults: { format: 'json' } do
-    resources :projects, only: [:index, :show] do
+    resources :projects, only: [:index, :show, :create, :update] do
       # TODO hook from jira
-      resources :members
       resource :sprints do
         get 'report' # TODO pdf and html format
         post 'reload'

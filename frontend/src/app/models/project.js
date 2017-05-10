@@ -35,7 +35,11 @@ export default class Project extends Abstract {
     DELETE_SUCCESS: DELETE_PROJECT_SUCCESS,
     DELETE_FAILURE: DELETE_PROJECT_FAILURE
   }
+  remove() {
+    this._destroy = true 
+  }
   serialize() {
+    this.project_members_attributes = this.members
     return this 
   }
 }

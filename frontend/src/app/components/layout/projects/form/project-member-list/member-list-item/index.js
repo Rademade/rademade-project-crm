@@ -28,6 +28,8 @@ class ProjectMemberList extends Component {
     this.setState({
       [name]: value
     });
+    console.log(this.state)
+    this.props.onChange(this.state)
   }
 
   onDelete(e){
@@ -36,17 +38,11 @@ class ProjectMemberList extends Component {
   }
 
   render() {
+    console.log(this.state)
     const { project, developers } = this.props;
     return (
       <div>
-        {
-        //selector with all developers
-        // input hours/sprint
-        // 20 $ per hours
-        // remove button
-        }
-        <form className="form-inline">
-          
+        <fieldset className="form-inline">
           <select className="form-control"
                   name="developerId"
                   value={this.state.developerId}
@@ -57,16 +53,24 @@ class ProjectMemberList extends Component {
           </select>
 
           <div className="form-group">
-            <input type="text" placeholder="h/sprint" className="form-control" id="hours"/>
+            <input className="form-control"
+              type="text"
+              name="hours"
+              value={this.state.hours}
+              onChange={this.handleInputChange}
+              placeholder="h/sprint"
+              id="hours"/>
           </div>
           
           <div className="form-group">
-              <input type="text" placeholder="per hour" className="form-control" id="perhour"/>
+            <input type="text" name="rate"
+              value={this.state.rate}
+              onChange={this.handleInputChange}
+              placeholder="per hour" className="form-control" id="rate"/>
           </div>
           
           <button type="submit" onClick={this.onDelete} className="btn btn-default">remove</button>
-       
-       </form>
+        </fieldset> 
       </div>
     )
   }
@@ -74,6 +78,7 @@ class ProjectMemberList extends Component {
 }
 ProjectMemberList.propTypes = {
   developers: PropTypes.array,
-  member: PropTypes.object
+  member: PropTypes.object,
+  onChange: PropTypes.function
 };
 export default ProjectMemberList

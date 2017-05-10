@@ -1,2 +1,3 @@
 collection @projects
-attributes :id, :name
+extends('api/projects/show')
+
