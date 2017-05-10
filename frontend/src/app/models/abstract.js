@@ -105,6 +105,10 @@ class Abstract {
     changeCaseKeys(this, 'camelize')
     return this
   }
+  serialize(){
+    return this
+  }
+  
   underscored() {
     changeCaseKeys(this, 'underscored')
     return this

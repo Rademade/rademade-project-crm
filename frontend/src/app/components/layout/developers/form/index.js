@@ -10,7 +10,7 @@ class DeveloperForm extends Component {
     if(_.isEmpty(this.props.departments)){
       Department.query()
     }
-    this.state = {department:{}, ...this.props.developer}
+    this.state = { department: {}, ...this.props.developer }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this)
     this.submit = this.submit.bind(this)

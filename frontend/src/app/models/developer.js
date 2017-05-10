@@ -37,5 +37,6 @@ export default class Developer extends Abstract {
   }
   serialize() {
     this.departmentId = this.department.id
+    return this
   }
 }

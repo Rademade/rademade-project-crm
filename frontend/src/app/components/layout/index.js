@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import { Route } from 'react-router'
 import Projects from './projects/container'
 import Departments from './departments/container'
-import Developers from './developers/container'
+import Developers from './developers/index/container'
 
 import './style.css'
 export default class Layout extends Component {
