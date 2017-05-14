@@ -1,19 +1,10 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { Route } from 'react-router'
-import Projects from './projects/container'
-import Departments from './departments/container'
-import Developers from './developers/index/container'
+import Projects from 'containers/index/projects'
+import Departments from 'containers/index/departments'
+import Developers from 'containers/index/developers'
 
-import './style.css'
 export default class Layout extends Component {
-
-  constructor(props){
-    super(props);
-  }
-
-  componentDidMount(){
-
-  }
 
   render() {
     return (
@@ -24,7 +15,6 @@ export default class Layout extends Component {
             <Route path="/departments" component={Departments}/>
             <Route path="/developers" component={Developers}/>
           </div>
-
         </div>
       </div>
     )

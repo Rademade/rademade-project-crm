@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
 import { Route } from 'react-router'
 
-import DevelopersList from './list/container'
-import DeveloperNew from './new/container'
+import DevelopersList from 'components/layout/developers/list'
+import DeveloperNew from './new'
 import DeveloperEdit from './edit'
 
 import Developer from 'models/developer'

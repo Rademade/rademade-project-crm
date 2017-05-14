@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
 

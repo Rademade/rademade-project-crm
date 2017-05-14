@@ -1,19 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
 
 class ProjectTableItem extends Component {
 
-  constructor(){
-    super()
-  }
-
-  componentDidMount() {
-  }
-
   render() {
-    const { project } = this.props;
+    const { project } = this.props
     return (
        <tr>
          <th>{project.name}</th>
@@ -24,6 +16,5 @@ class ProjectTableItem extends Component {
        </tr>
     )
   }
-
 }
 export default ProjectTableItem

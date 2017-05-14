@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import { connect }                       from 'react-redux'
+import { bindActionCreators }            from 'redux'
+import  navigationActions                from 'actions/navigation'
+
 import Developer from 'models/developer'
 import DeveloperForm from 'components/layout/developers/form/container';
 class DeveloperNew extends Component {
@@ -22,4 +26,17 @@ class DeveloperNew extends Component {
 }
 DeveloperNew.propTypes = {
 }
-export default DeveloperNew
+function mapStateToProps(state) {
+  return {}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({ ...navigationActions }), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeveloperNew)

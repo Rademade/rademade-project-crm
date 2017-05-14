@@ -45,7 +45,7 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.jsx', '.js', '.css'],
     //root: path.resolve('src'),
     alias: {
       components: path.resolve('src/app/components'),
@@ -54,10 +54,10 @@ module.exports = {
       reducers:   path.resolve('src/app/reducers'),
       actions:    path.resolve('src/app/actions'),
       selectors:  path.resolve('src/app/selectors'),
-			routes:     path.resolve('src/app/routes'),
+      routes:     path.resolve('src/app/routes'),
       assets:     path.resolve('src/assets'),
       models:     path.resolve('src/app/models'),
-      store: path.resolve('src/app/store')
+      store:      path.resolve('src/app/store')
     }
   },
   plugins: [

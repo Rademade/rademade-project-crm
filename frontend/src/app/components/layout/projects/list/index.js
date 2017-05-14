@@ -1,23 +1,15 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
+
+import { connect }                       from 'react-redux'
+import { bindActionCreators }            from 'redux'
+import getProjects                       from 'selectors/projects'
+
 import { Route } from 'react-router'
 import ProjectTableItem from './table-item'
-import Project from 'models/project'
+
 class List extends Component {
-
-  constructor(){
-    super()
-  }
-
-  componentDidMount() {
-    Project.query()
-  }
-  componentDidUpdate(){
-  }
-
+  
   render() {
-    const { projects, isLoadingPending } = this.props.projectsState;
-    if (isLoadingPending) { return (<div>Loading</div>)}
     return (
       <table className="table">
         <thead>
@@ -29,7 +21,7 @@ class List extends Component {
         </thead>
         <tbody>
           {
-            projects.map((project) =>
+            this.props.projects.map((project) =>
               <ProjectTableItem key={project.id} project={project} onDelete={ () => project.delete() }/>
             )
           }
@@ -39,4 +31,19 @@ class List extends Component {
   }
 
 }
-export default List
+function mapStateToProps(state) {
+  return {
+    projectsState: getProjects(state)
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List)

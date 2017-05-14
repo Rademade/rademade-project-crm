@@ -1,5 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
+
+import { connect }                          from 'react-redux'
+import { bindActionCreators }               from 'redux'
+import getDevelopers                        from 'selectors/developers'
+
 import { Route } from 'react-router'
 import _ from 'lodash'
 import Project from 'models/project'
@@ -22,7 +26,6 @@ class ProjectForm extends Component {
 
   submit(e){
     e.preventDefault();
-    console.log(this.state)
     this.props.submit(this.state)
   }
   
@@ -41,13 +44,11 @@ class ProjectForm extends Component {
   deleteMember(i){
     let { members } = this.state
     let deletedMember = members[i]
-    console.log('delete members', members)
     members.splice(i, 1, { _destroy: true, ...deletedMember })
     this.setState({...this.state,  members: [...members] })
   }
 
   addMember(member){
-    console.log('add new member')
     this.setState({ members: [...this.state.members, { departmentId: null }] })
   }
 
@@ -59,13 +60,7 @@ class ProjectForm extends Component {
       [name]: value
     });
   }
-
-  componentDidMount() {
-  }
-
-  componentDidUpdate(){
-  }
-
+  
   render() {
     console.log('render')
     const { developers } = this.props;
@@ -99,4 +94,18 @@ class ProjectForm extends Component {
   }
 
 }
-export default ProjectForm
+function mapStateToProps(state) {
+  return {
+    developers: getDevelopers(state).developers
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectForm)
