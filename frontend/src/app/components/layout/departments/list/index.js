@@ -1,21 +1,19 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
+
+import { connect }                       from 'react-redux'
+import { bindActionCreators }            from 'redux'
+import getDepartments                    from 'selectors/departments'
+
 import { Route } from 'react-router'
 import DepartmentTableItem from './table-item'
 import Department from 'models/department'
 
 class List extends Component {
 
-  constructor(props){
-    super(props)
-  }
-
   componentDidMount() {
     Department.query()
   }
-  componentDidUpdate(){
-  }
-
+  
   render() {
     const { departments, isLoadingPending } = this.props.departmentsState;
     if (isLoadingPending) { return (<div>Loading</div>)}
@@ -39,4 +37,20 @@ class List extends Component {
   }
 
 }
-export default List
+const mapStateToProps = (state) => {
+  return {
+    departmentsState: getDepartments(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List)
+

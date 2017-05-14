@@ -1,19 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
+
+import { connect }                       from 'react-redux'
+import { bindActionCreators }            from 'redux'
+import getDevelopers                    from 'selectors/developers'
+
 import { Route } from 'react-router'
 import DeveloperTableItem from './table-item'
-import Developer from 'models/developer'
 class List extends Component {
-
-  constructor(){
-    super()
-  }
-
-  componentDidMount() {
-    Developer.query()
-  }
-  componentDidUpdate(){
-  }
 
   render() {
     const { developers, isLoadingPending } = this.props.developersState;
@@ -39,4 +32,19 @@ class List extends Component {
   }
 
 }
-export default List
+const mapStateToProps = (state) => {
+  return {
+    developersState: getDevelopers(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List)

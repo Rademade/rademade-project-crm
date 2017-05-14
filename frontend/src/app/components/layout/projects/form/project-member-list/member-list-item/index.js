@@ -16,9 +16,6 @@ class ProjectMemberList extends Component {
     e.preventDefault();
     this.props.submit(this.state)
   }
-
-  componentDidMount() {
-  }
   
   handleInputChange(event) {
     const target = event.target;
@@ -27,7 +24,6 @@ class ProjectMemberList extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state)
     this.props.onChange(this.state)
   }
 
@@ -37,7 +33,6 @@ class ProjectMemberList extends Component {
   }
 
   render() {
-    console.log(this.state)
     const { project, developers } = this.props;
     return (
       <div>

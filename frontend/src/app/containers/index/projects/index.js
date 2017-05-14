@@ -38,7 +38,7 @@ class Projects extends Component {
                 component={ ({ match }) => { return <ProjectNew/> } }/>
               
          <Route path='/projects/:id/edit'
-                component={ ({ match }) => { return <ProjectEdit developer={ this.getProject(match.params.id) } /> } }/>
+                component={ ({ match }) => { return <ProjectEdit project={ this.getProject(match.params.id) } /> } }/>
 
       </div>
     )
@@ -46,7 +46,7 @@ class Projects extends Component {
 }
 function mapStateToProps(state) {
   return {
-     projects: getProjects(state).projects
+    projects: getProjects(state).projects
   }
 }
 

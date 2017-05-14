@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Route } from 'react-router'
 
+import { connect }                       from 'react-redux'
+import { bindActionCreators }            from 'redux'
+import getDevelopers                    from 'selectors/developers'
+
 import DevelopersList from 'components/layout/developers/list'
 import DeveloperNew from './new'
 import DeveloperEdit from './edit'
@@ -8,22 +12,12 @@ import DeveloperEdit from './edit'
 import Developer from 'models/developer'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import store from 'store'
-import { push } from 'react-router-redux'
 class Developers extends Component {
 
   constructor(props) {
     super(props)
+    Developer.query()
     this.getDeveloper = this.getDeveloper.bind(this)
-  }
-
-  componentDidMount() {
-
-  }
-
-  submitNewDeveloper(developer) {
-    new Developer(developer).save()
-    store.dispatch(push('/developers'))
   }
 
   getDeveloper(id){
@@ -35,7 +29,9 @@ class Developers extends Component {
       <div>
         <DevelopersList/>
         
-        <Route exact path="/developers" component={ () => { return <Link to="/developers/new">Добавить</Link> } }/>
+        <Route exact
+               path="/developers"
+               component={ () => { return <Link to="/developers/new">Добавить</Link> } }/>
 
         <Route path='/developers/new'
                component={ ({ match }) => { return <DeveloperNew/> } }/>
@@ -47,4 +43,19 @@ class Developers extends Component {
   }
 
 }
-export default Developers
+const mapStateToProps = (state) => {
+  return {
+    developers: getDevelopers(state).developers
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Developers)

@@ -62,9 +62,8 @@ class ProjectForm extends Component {
   }
   
   render() {
-    console.log('render')
     const { developers } = this.props;
-    if(!developers || !this.props.project) { return <div>loading..</div> }
+    if(!developers) { return <div>loading..</div> }
     return (
       <form>
         <fieldset>
@@ -84,9 +83,12 @@ class ProjectForm extends Component {
                    onChange={this.handleInputChange}
                    className="form-control" placeholder="Toggl ID"/>
           </div>
-          { console.log(this.state) }
           <ProjectMemberList
-            members={this.state.members} onNew={this.addMember} onMemberChange={this.onMemberChange.bind(this)}  onDelete={this.deleteMember}  developers={developers}/>
+            members={this.state.members}
+            onNew={this.addMember}
+            onMemberChange={this.onMemberChange.bind(this)}
+            onDelete={this.deleteMember}
+            developers={developers}/>
           <button onClick={this.submit} type="submit" className="btn btn-primary">Добавить</button>
         </fieldset>
       </form>

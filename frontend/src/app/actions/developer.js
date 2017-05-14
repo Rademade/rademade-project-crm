@@ -1,15 +1,10 @@
-import { toDepartments, toDevelopers, toProjects } from 'actions/navigation'
-import Project from 'models/project'
+import navigation from 'actions/navigation'
+import Developer from 'models/developer'
 
 export default {
-  saveProject: (project) => (dispatch) => {
-    new Project(project).save().then => toProjects(project)(dispatch)
-  },
-  saveDepartment: (department) => (dispatch) => {
-    dispatch(push('/projects'))
-  },
-  toDevelopers:  (developer) => (dispatch) => {
-    dispatch(push('/developers'))
+  saveDeveloper: (developer) => (dispatch) => {
+    new Developer(developer).save()
+    navigation.toDevelopers()(dispatch)
   }
 }
 

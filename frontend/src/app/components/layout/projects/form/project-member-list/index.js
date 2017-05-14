@@ -11,24 +11,14 @@ class ProjectMemberList extends Component {
   addNewMember(e){
     e.preventDefault()
     this.props.onNew()
-    console.log('addNewMember')
   }
   
   onDelete(i){
-    console.log('remove member', i)
     this.props.onDelete(i)
   } 
-  
-  componentDidMount() {
-  }
-
-  componentDidUpdate(){
-  }
 
   render() {
-      console.log('render list')
       let members = _.reject(this.props.members, (member) => member._destroy)
-
       return (
         <div>
           <span>Project Team</span>

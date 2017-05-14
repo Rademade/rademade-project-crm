@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import './style.css'
+import { connect }                          from 'react-redux'
+import { bindActionCreators }               from 'redux'
+import getDepartments                       from 'selectors/departments'
 import { Route } from 'react-router'
 import _ from 'lodash'
 import Department from 'models/department'
@@ -35,12 +37,6 @@ class DeveloperForm extends Component {
     this.setState({
       [name]: value
     });
-  }
-
-  componentDidMount() {
-  }
-
-  componentDidUpdate(){
   }
 
   render() {
@@ -84,4 +80,19 @@ class DeveloperForm extends Component {
   }
 
 }
-export default DeveloperForm
+function mapStateToProps(state) {
+  return {
+     departments: getDepartments(state).departments
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}), dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeveloperForm)
