@@ -17,11 +17,6 @@ class Projects extends Component {
   constructor(props) {
     super(props);
     Project.query()
-    this.getProject = this.getProject.bind(this)
-  }
-
-  getProject(id) {
-    return _.find(this.props.projects, { id: parseInt(id) })
   }
 
   render() {
@@ -38,7 +33,7 @@ class Projects extends Component {
                 component={ ({ match }) => { return <ProjectNew/> } }/>
               
          <Route path='/projects/:id/edit'
-                component={ ({ match }) => { return <ProjectEdit project={ this.getProject(match.params.id) } /> } }/>
+                component={ ({ match }) => { return <ProjectEdit projectId={ match.params.id } /> } }/>
 
       </div>
     )

@@ -12,6 +12,10 @@ class Abstract {
     QUERY_REQUEST: '',
     QUERY_FAILURE: '',
     
+    GET_SUCCESS: '',
+    GET_REQUEST: '',
+    GET_FAILURE: '',
+
     CREATE_SUCCESS: '',
     CREATE_REQUEST: '',
     CREATE_FAILURE: '',
@@ -45,11 +49,23 @@ class Abstract {
         }
         return items; }],
     }).then((response) => {
-        console.log('query')
         store.dispatch({type: this.ACTION_TYPES.QUERY_SUCCESS, items: changeCaseKeys(response.data, 'camelize') })
       })
       .catch( (error) => {
          store.dispatch({type: this.ACTION_TYPES.QUERY_FAILURE, error: error})
+      });
+  }
+
+  static get(id) {
+    store.dispatch({type: this.ACTION_TYPES.GET_REQUEST });
+    axios({
+      method: 'get',
+      url: `${this.URL}/${id}`,
+    }).then(({ data }) => {
+        store.dispatch({ type: this.ACTION_TYPES.GET_SUCCESS, item: new this(data).camelize() })
+      })
+      .catch((error) => {
+        store.dispatch({ type: this.ACTION_TYPES.GET_FAILURE, error: error })
       });
   }
 

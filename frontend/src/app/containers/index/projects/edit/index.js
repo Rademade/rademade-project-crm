@@ -7,11 +7,17 @@ import ProjectForm from 'components/layout/projects/form'
 import Project from 'models/project'
 import projectActions from 'actions/project'
 
-const ProjectEdit = (props) => (
-  <ProjectForm
-    project={props.project}
-    submit={ (project) => props.actions.saveProject(project) }/>
-)
+const ProjectEdit = (props) => {
+  if (!props.project) {
+    props.actions.getProject(props.projectId)
+    return (<div>Loading...</div>)
+  }
+  return (
+    <ProjectForm
+      project={ props.project }
+      submit={ (project) => props.actions.saveProject(project) }/>
+  )
+}
 
 const mapStateToProps = (state) => { return {} }
 const mapDispatchToProps = (dispatch) => {
