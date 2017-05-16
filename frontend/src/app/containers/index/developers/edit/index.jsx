@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
-import developersActions                from 'actions/developer'
+import developersActions                 from 'actions/developer'
+import getEditDepartmentState            from 'selectors/edit-department'
 
 import DeveloperForm from 'components/layout/developers/form'
 
@@ -12,7 +13,11 @@ const DeveloperEdit = ({ developer, actions }) => (
     submit={ actions.saveDeveloper }/>
 )
 
-const mapStateToProps = (state) => { return {} }
+const mapStateToProps = (state) => {
+  return {
+    editDepartmentState: getEditDepartmentState(state)  
+  } 
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(Object.assign({ ...developersActions }), dispatch)

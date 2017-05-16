@@ -1,3 +1,3 @@
 collection @projects
-extends('api/projects/show')
 
+attributes :id, :name, :toggl_pid

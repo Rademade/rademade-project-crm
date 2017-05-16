@@ -4,10 +4,10 @@ import { bindActionCreators }            from 'redux'
 import projectActions from 'actions/project'
 import ProjectForm from 'components/layout/projects/form'
 
-const ProjectNew = (props) => (
+const ProjectNew = ({ actions }) => (
   <ProjectForm
     project={ {} }
-    submit={ (project) => props.actions.saveProject(project) }/>
+    submit={ actions.saveProject }/>
 )
 
 function mapStateToProps(state) { return {} }

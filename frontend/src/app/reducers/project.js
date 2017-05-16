@@ -8,15 +8,12 @@ const initialState = {
   isLoadingPending: false,
   isLoadingSuccess: false,
   isFormValid: false,
-  project: {}
+  project: null
 };
 
 export default function project(state = initialState, action) {
 
   switch (action.type) {
-
-		case NEW_PROJECT:
-      return { ...initialState };
 
     case GET_PROJECT_REQUEST:
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };

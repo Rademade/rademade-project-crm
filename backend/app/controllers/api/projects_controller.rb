@@ -4,6 +4,10 @@ class Api::ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def show
+    @project = Project.find(params[:id]) 
+  end
+  
   def create
     @project = Project.create!(project_params)
   end

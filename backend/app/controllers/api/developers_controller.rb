@@ -4,6 +4,10 @@ class Api::DevelopersController < ApplicationController
     @developers = Developer.all
   end
 
+  def show
+    @developer = Developer.find(params[:id]) 
+  end
+
   def create
     @developer = Developer.create!(developer_params)
   end

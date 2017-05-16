@@ -97,8 +97,8 @@ class Abstract {
       method: 'post',
       url: this.constructor.URL,
       data: this.serialize().underscored(),
-    }).then((response) => {
-        store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_SUCCESS, item: this.camelize() })
+    }).then(({ data }) => {
+        store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_SUCCESS, item: new this.constructor({ id: data.id, ...this.camelize() }) })
       })
       .catch((error) => {
         store.dispatch({type: this.constructor.ACTION_TYPES.CREATE_FAILURE, error: error})

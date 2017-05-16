@@ -1,9 +1,8 @@
 import { createSelector } from 'reselect'
 
 export default createSelector(
-  state => state.project,
+  state => state.editProjectState,
   (project) => {
-    console.log('project changed')
     return project
   }
 )
