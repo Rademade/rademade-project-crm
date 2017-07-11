@@ -11,7 +11,10 @@
 #
 
 class Project < ApplicationRecord
-  has_many :project_sprints, :class_name => 'Project::Sprint'
-  has_many :project_members, :class_name => 'Project::Member'
+
+  has_many :sprints, class_name: 'Project::Sprint',
+                     dependent: :destroy
+  has_many :project_members, :class_name => 'Project::Member', dependent: :destroy
   accepts_nested_attributes_for :project_members, allow_destroy: true
+
 end

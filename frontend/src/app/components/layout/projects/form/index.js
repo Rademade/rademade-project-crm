@@ -68,13 +68,23 @@ class ProjectForm extends Component {
       <form>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="disabledTextInput">Teammate name</label>
+            <label htmlFor="disabledTextInput">Project name</label>
             <input type="text"
                    name="name"
                    value={this.state.name}
                    onChange={this.handleInputChange}
-                   className="form-control" placeholder="Teammate name"/>
+                   className="form-control" placeholder="Project name"/>
           </div>
+
+          <div className="form-group">
+            <label htmlFor="disabledTextInput">Jira key</label>
+            <input type="text"
+                   name="jiraKey"
+                   value={this.state.jiraKey}
+                   onChange={this.handleInputChange}
+                   className="form-control" placeholder="Jira key"/>
+          </div>
+
           <div className="form-group">
             <label htmlFor="disabledTextInput">Toggl ID</label>
             <input type="text"

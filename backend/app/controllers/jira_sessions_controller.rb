@@ -33,4 +33,5 @@ class JiraSessionsController < ApplicationController
   def destroy
     session.data.delete(:jira_auth)
   end
+
 end

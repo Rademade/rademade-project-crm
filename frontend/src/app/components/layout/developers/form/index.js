@@ -45,7 +45,7 @@ class DeveloperForm extends Component {
         <fieldset>
             
           <div className="form-group">
-            <label htmlFor="disabledTextInput">Project name</label>
+            <label htmlFor="disabledTextInput">Teammate name</label>
             <input type="text"
                    name="name"
                    value={this.state.name}

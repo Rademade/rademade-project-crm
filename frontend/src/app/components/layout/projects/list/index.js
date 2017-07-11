@@ -22,7 +22,11 @@ class List extends Component {
         <tbody>
           {
             this.props.projects.map((project) =>
-              <ProjectTableItem key={project.id} project={project} onDelete={ () => project.delete() }/>
+              <ProjectTableItem key={project.id}
+                                project={project}
+                                onDelete={ () => project.delete() }
+                                onUpdate={ () => project.update() }
+                                />
             )
           }
         </tbody>

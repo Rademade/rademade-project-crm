@@ -23,7 +23,7 @@ class Project::Sprint < ApplicationRecord
   STATUS_FORECAST = 3
 
   belongs_to :project
-  has_many :project_sprint_member_details, :class_name => 'Project::Sprint::MemberDetail'
+  has_many :project_sprint_member_details, :class_name => 'Project::Sprint::MemberDetail', dependent: :destroy
 
   scope :closed, -> { where(:status => STATUS_CLOSED) }
 
