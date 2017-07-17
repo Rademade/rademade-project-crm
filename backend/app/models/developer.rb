@@ -20,5 +20,16 @@
 #
 
 class Developer < ApplicationRecord
+
   belongs_to :department
+
+  has_many :project_members, class_name: 'Project::Member',
+                             dependent: :destroy
+
+  validates :toggl_api_key, :department, presence: true
+
+  def duration
+    MemberDetailsService.new(toggl_api_key: toggl_api_key).duration
+  end
+
 end

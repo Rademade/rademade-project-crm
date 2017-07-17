@@ -1,24 +1,23 @@
 class MemberDetailsService
 
-  def duration
-
+  def initialize(toggl_api_key:)
+    @toggl_api_key = toggl_api_key
   end
 
-  protected
-  # @param [Sprint] sprint
-  # @param [Member] member
-  def initialize(sprint, member)
-    @sprint = sprint
-    @member = member
+  def duration(start_at, end_at)
+    @duration ||= entries(start_at: start_at, end_at: end_at).sum(&:duration)
   end
 
   private
-  # -u 1971800d4d82861d8f2c1651fea4d212:api_toke
-  # https://github.com/toggl/toggl_api_docs/blob/master/chapters/time_entries.md#get-time-entries-started-in-a-specific-time-range
 
-  def entries
-    # TODO
-    # https://www.toggl.com/api/v8/time_entries?start_date=&end_date=&pid=&1
+  def toggl
+    @toggl ||= TogglV8::API.new(@toggl_api_key)
+  end
+
+  def entries(start_at:, end_at:)
+    @entries ||= @toggl.get_time_entries(start_date: start_at, end_date: end_at).map do |e|
+      Toggl::TimeEntry.new(e)
+    end
   end
 
 end

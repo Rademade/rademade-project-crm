@@ -23,7 +23,7 @@ class Api::DevelopersController < ApplicationController
   end
 
   def developer_params
-    params.require(:developer).permit(:id, :name, :department_id, :toggl_id)
+    params.require(:developer).permit(:id, :name, :department_id, :toggl_api_key)
   end
 
 end

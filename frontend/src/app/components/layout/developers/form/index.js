@@ -12,7 +12,8 @@ class DeveloperForm extends Component {
     if(_.isEmpty(this.props.departments)){
       Department.query()
     }
-    this.state = { department: {}, ...this.props.developer }
+
+    this.state = { ...this.props.developer }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this)
     this.submit = this.submit.bind(this)
@@ -40,6 +41,7 @@ class DeveloperForm extends Component {
 
   render() {
     if(_.isEmpty(this.props.departments)) { return <div>loading..</div> }
+    this.state.department = this.props.departments[0]
     return (
       <form>
         <fieldset>
@@ -56,8 +58,8 @@ class DeveloperForm extends Component {
           <div className="form-group">
             <label htmlFor="disabledTextInput">Toggl ID</label>
             <input type="text"
-                   name="togglId"
-                   value={this.state.togglId}
+                   name="togglApiKey"
+                   value={this.state.togglApiKey}
                    onChange={this.handleInputChange}
                    className="form-control" placeholder="Toggl ID"/>
           </div>

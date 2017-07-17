@@ -28,9 +28,9 @@
 class Project::Sprint < ApplicationRecord
 
   belongs_to :project
-  has_many :project_sprint_member_details, class_name: 'Project::Sprint::MemberDetail',
-                                           dependent: :destroy
-
-  # enum status: [:active, :closed]
+  has_many :member_details, class_name: 'Project::Sprint::MemberDetail',
+                            foreign_key: :project_sprint_id,
+                            dependent: :destroy
+  enum status: [:active, :closed]
 
 end
