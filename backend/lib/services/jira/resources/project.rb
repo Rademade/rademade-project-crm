@@ -28,6 +28,10 @@ module Jira
         @total_story_points ||= sprints.sum(&:total_story_points)
       end
 
+      def active_sprint
+        @active_sprint ||= sprints.select(&:active?).last
+      end
+
       def sprints
         @sprints ||= boards.map { |board| board.sprints }.flatten.uniq { |sprint| sprint.id }
       end

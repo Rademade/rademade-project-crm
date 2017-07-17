@@ -11,7 +11,7 @@
 #  sprint_story_point :decimal(, )
 #  closed_story_point :decimal(, )
 #  time_spent         :decimal(, )
-#  status             :decimal(, )
+#  status             :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

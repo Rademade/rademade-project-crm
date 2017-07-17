@@ -25,7 +25,7 @@ class List extends Component {
               <ProjectTableItem key={project.id}
                                 project={project}
                                 onDelete={ () => project.delete() }
-                                onUpdate={ () => project.update() }
+                                onUpdate={ () => project.reload() }
                                 />
             )
           }

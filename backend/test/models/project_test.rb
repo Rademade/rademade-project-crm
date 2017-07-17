@@ -8,6 +8,7 @@
 #  toggl_pid  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  jira_key   :string
 #
 
 require 'test_helper'

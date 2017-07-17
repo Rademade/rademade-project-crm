@@ -39,6 +39,10 @@ class Jira::Resources::Project::Sprint
     @data ||= @client.Sprint.find(id, { fields: ['customfield_10016', 'customfield_10022'] })
   end
 
+  def status
+    active? ? 'active' : 'closed'
+  end
+
   def active?
     @state == 'ACTIVE'
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710143616) do
+ActiveRecord::Schema.define(version: 20170717070033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,15 +54,16 @@ ActiveRecord::Schema.define(version: 20170710143616) do
   create_table "project_sprints", force: :cascade do |t|
     t.string   "name"
     t.integer  "project_id"
-    t.date     "date_start"
-    t.date     "date_end"
+    t.date     "start_at"
+    t.date     "end_at"
     t.decimal  "backlog_estimation"
     t.decimal  "sprint_story_point"
     t.decimal  "closed_story_point"
     t.decimal  "time_spent"
-    t.decimal  "status"
+    t.integer  "status"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "jira_key"
     t.index ["project_id"], name: "index_project_sprints_on_project_id", using: :btree
   end
 

@@ -77,6 +77,20 @@ class Abstract {
     }
   }
 
+  reload() {
+    store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_REQUEST});
+    axios({
+      method: 'get',
+      url: `${this.constructor.URL}/${this.id}`,
+      data: this.serialize().underscored(),
+    }).then(({ data }) => {
+        store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_SUCCESS, item: new this.constructor(data).camelize() })
+      })
+      .catch((error) => {
+        store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_FAILURE, error: error})
+      });
+  }
+
   update() {
     store.dispatch({type: this.constructor.ACTION_TYPES.UPDATE_REQUEST});
     axios({
@@ -121,6 +135,7 @@ class Abstract {
     changeCaseKeys(this, 'camelize')
     return this
   }
+
   serialize(){
     return this
   }
