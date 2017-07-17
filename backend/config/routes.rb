@@ -22,6 +22,11 @@ Rails.application.routes.draw do
         # resource :exceptense_criteria
       end
     end
+
+    scope module: :project do
+      resources :sprints, only: [:index]
+    end
+
     resources :developers
     resources :departments
   end

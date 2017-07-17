@@ -33,4 +33,8 @@ class Project::Sprint < ApplicationRecord
                             dependent: :destroy
   enum status: [:active, :closed]
 
+  def complete_sp
+    project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
+  end
+
 end

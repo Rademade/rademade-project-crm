@@ -13,8 +13,9 @@
 
 class Project < ApplicationRecord
 
-  has_many :sprints, class_name: 'Project::Sprint',
-                     dependent: :destroy
+  has_many :sprints, proc { order(end_at: :desc) }, class_name: 'Project::Sprint',
+                                                    dependent: :destroy
+
   has_many :project_members, class_name: 'Project::Member',
                              dependent: :destroy
 

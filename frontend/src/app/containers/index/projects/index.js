@@ -11,6 +11,8 @@ import ProjectEdit from './edit'
 import ProjectNew from './new'
 import Project from 'models/project'
 import ProjectList from 'components/layout/projects/list'
+import ProjectSprints from './sprints'
+
 
 class Projects extends Component {
 
@@ -24,7 +26,7 @@ class Projects extends Component {
     return (
       <div>
          <ProjectList projects={ this.props.projects }/>
-         
+
          <Route exact
                 path="/projects"
                 component={ () => { return <Link to="/projects/new">Добавить</Link> } }/>
@@ -35,6 +37,8 @@ class Projects extends Component {
          <Route path='/projects/:id/edit'
                 component={ ({ match }) => { return <ProjectEdit projectId={ match.params.id } /> } }/>
 
+         <Route path='/projects/:id/sprints'
+                component={ ({ match }) => { return <ProjectSprints projectId={ match.params.id } /> } }/>
       </div>
     )
   }

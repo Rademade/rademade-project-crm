@@ -33,10 +33,11 @@ class Abstract {
     Object.assign(this, data)
   }
 
-  static query() {
+  static query(params = {}) {
     store.dispatch({type: this.ACTION_TYPES.QUERY_REQUEST });
     axios({
       method: 'get',
+      params: params,
       url: this.URL,
       transformResponse: [(data) => {
         let items = JSON.parse(data)

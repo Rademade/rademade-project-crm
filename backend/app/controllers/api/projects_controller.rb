@@ -1,7 +1,5 @@
 class Api::ProjectsController < ApplicationController
   
-  before_filter :get_jira_client
- 
   def index
     @projects = Project.all
   end
@@ -9,7 +7,7 @@ class Api::ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     # sync with Jira
-    # ::Jira::Sync::Project.new(@project).call
+    ::Jira::Sync::Project.new(@project).call
   end
 
   def create

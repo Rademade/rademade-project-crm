@@ -10,7 +10,7 @@ const ProjectTableItem = ({ project, onDelete, onUpdate }) => (
       <button onClick={onDelete}>Delete</button>
     </th>
     <th>
-      <div>Sprints({project.sprintsCount})</div>
+      <Link to={ `/projects/${project.id}/sprints` }>Sprints({project.sprintsCount})</Link>
       <button onClick={onUpdate}>Update</button>
     </th>
   </tr>
