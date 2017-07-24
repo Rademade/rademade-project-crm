@@ -1,5 +1,6 @@
 module Jira
   module Resources
+    # Jira::Resources::Issue.new(data)
     class Issue
 
     #  == data
@@ -41,6 +42,10 @@ module Jira
         info['state'] == 'CLOSED'
       end
 
+      def future?
+        info['state'] == 'FUTURE'
+      end
+
       def story_points
         @data['fields']['customfield_10022']
       end
@@ -48,8 +53,10 @@ module Jira
       private
 
       def info
+        return {} unless @data['fields']['customfield_10016']
         @info ||= Hash[
-          @data['fields']['customfield_10016'].last
+          @data['fields']['customfield_10016']
+            .last
             .gsub(/.*\[/, '').gsub(/\]/, '')
             .split(',').map { |raw_string| raw_string.split('=') }
             .select { |array| array.size == 2 }

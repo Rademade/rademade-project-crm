@@ -21,8 +21,13 @@ class Project < ApplicationRecord
 
   accepts_nested_attributes_for :project_members, allow_destroy: true
 
+
+  def jira_client
+    @jira_client ||= Jira::Resources::Project.new(jira_key)
+  end
+
   def story_points
-    sprints.sum(:sprint_story_point)
+    jira_client.total_story_points
   end
 
 end

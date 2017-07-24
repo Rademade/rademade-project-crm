@@ -1,23 +1,18 @@
 class MemberDetailsService
 
-  def initialize(toggl_api_key:)
-    @toggl_api_key = toggl_api_key
+  attr_reader :member
+
+  def initialize(member)
+    @member = member
   end
 
   def duration(start_at, end_at)
     @duration ||= entries(start_at: start_at, end_at: end_at).sum(&:duration)
   end
 
-  private
-
-  def toggl
-    @toggl ||= TogglV8::API.new(@toggl_api_key)
-  end
-
-  def entries(start_at:, end_at:)
-    @entries ||= @toggl.get_time_entries(start_date: start_at, end_date: end_at).map do |e|
-      Toggl::TimeEntry.new(e)
-    end
+  def entries(start_at, end_at)
+    @entries ||= @member.developer.entries(start_at, end_at)
+      .select { |time_entry| time_entry.project_toggl_pid == @member.project.toggl_pid }
   end
 
 end

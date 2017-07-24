@@ -9,7 +9,7 @@ gem 'jira-ruby', :require => 'jira-ruby'
 gem 'rademade_admin', github: 'Rademade/rademade_admin', branch: 'feature/rails-5'
 gem 'pg'
 
-gem 'togglv8', require: false
+gem 'togglv8'
 
 gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser

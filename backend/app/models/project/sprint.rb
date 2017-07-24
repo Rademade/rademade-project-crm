@@ -5,8 +5,8 @@
 #  id                 :integer          not null, primary key
 #  name               :string
 #  project_id         :integer
-#  start_at           :date
-#  end_at             :date
+#  start_at           :datetime
+#  end_at             :datetime
 #  backlog_estimation :decimal(, )
 #  sprint_story_point :decimal(, )
 #  closed_story_point :decimal(, )
@@ -31,10 +31,23 @@ class Project::Sprint < ApplicationRecord
   has_many :member_details, class_name: 'Project::Sprint::MemberDetail',
                             foreign_key: :project_sprint_id,
                             dependent: :destroy
+
   enum status: [:active, :closed]
 
   def complete_sp
     project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
+  end
+
+  def jira_info
+    @jira_info ||= Jira::Resources::Project::Sprint.new(id: jira_key, project_key: project.jira_key)
+  end
+
+  def jira_sync
+    Jira::Sync::Sprint.new(project: project, jira_key: jira_key).call
+  end
+
+  def toggle_time
+    @toggle_time ||= member_details.sum(&:toggle_time)
   end
 
 end

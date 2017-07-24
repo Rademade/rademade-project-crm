@@ -22,6 +22,7 @@
 #
 
 class Project::Member < ApplicationRecord
+
   belongs_to :project
   belongs_to :developer
 
@@ -29,4 +30,13 @@ class Project::Member < ApplicationRecord
            class_name: 'Project::Sprint::MemberDetail',
            foreign_key: :project_member_id,
            dependent: :destroy
+
+  def toggle
+    @toggle ||= MemberDetailsService.new(self)
+  end
+
+  def toggle_time(start_at, end_at)
+    toggle.duration(start_at, end_at)
+  end
+
 end

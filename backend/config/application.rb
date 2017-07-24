@@ -10,6 +10,7 @@ module RademadeCRM
 
     config.to_prepare do
       require 'services/jira'
+      require 'services/toggl'
     end
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,1 +1,1 @@
-require 'services/toggl/entry'
+require 'services/toggl/time_entry'

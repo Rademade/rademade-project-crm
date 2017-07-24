@@ -10,11 +10,11 @@ class Jira::Resources::Project::Sprint
 
   attr_reader :id, :name
 
-  def initialize(id:, name:, state:, client:)
+  def initialize(id:, name: nil, state: nil, client: nil, project_key: nil)
     @id = id
     @name = name
     @state = state
-    @client = client
+    @client = client || Jira::Config.client.Project.find(project_key).client
   end
 
   def data
@@ -36,7 +36,7 @@ class Jira::Resources::Project::Sprint
     #             "customfield_10022" => nil
     #         }
     # },
-    @data ||= @client.Sprint.find(id, { fields: ['customfield_10016', 'customfield_10022'] })
+    @data ||= @client.Sprint.find(id, { fields: ['customfield_10016', 'customfield_10022', 'assignee'] })
   end
 
   def status
@@ -49,6 +49,10 @@ class Jira::Resources::Project::Sprint
 
   def closed?
     @state == 'CLOSED'
+  end
+
+  def users
+  #   [{ email: 'andrey@rademad.com', story_points}]
   end
 
   def total_story_points

@@ -28,8 +28,12 @@ class Developer < ApplicationRecord
 
   validates :toggl_api_key, :department, presence: true
 
-  def duration
-    MemberDetailsService.new(toggl_api_key: toggl_api_key).duration
+  def toggl
+    @toggl ||= DeveloperDetailsService.new(toggl_api_key: toggl_api_key)
+  end
+
+  def toggl_duration(start_at, end_at)
+    toggl.duration(start_at, end_at)
   end
 
 end

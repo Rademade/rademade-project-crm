@@ -17,6 +17,10 @@ module Toggl
       @data ||= toggl_entry_data
     end
 
+    def project_toggl_pid
+      @data['pid']
+    end
+
     def current?
       !@data['stop']
     end

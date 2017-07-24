@@ -21,6 +21,12 @@
 require 'project/sprint'
 
 class Project::Sprint::MemberDetail < ApplicationRecord
+
   belongs_to :sprint, class_name: 'Project::Sprint'
   belongs_to :member, class_name: 'Project::Member'
+
+  def toggle_time
+    @toggle_time ||= member.toggle_time(sprint.start_at, sprint.end_at)
+  end
+
 end
