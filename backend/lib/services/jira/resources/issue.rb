@@ -3,6 +3,8 @@ module Jira
     # Jira::Resources::Issue.new(data)
     class Issue
 
+      attr_reader :data
+
     #  == data
     # {
     #     "expand" => "operations,versionedRepresentations,editmeta,changelog,renderedFields",
@@ -48,6 +50,14 @@ module Jira
 
       def story_points
         @data['fields']['customfield_10022']
+      end
+
+      def assignee
+        return @assignee if @assignee
+        _assignee = @data['fields']['assignee']
+        @assignee = {
+          email: _assignee['emailAddress']
+        }
       end
 
       private

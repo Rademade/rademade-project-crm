@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717135126) do
+ActiveRecord::Schema.define(version: 20170731061832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 20170717135126) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["department_id"], name: "index_developers_on_department_id", using: :btree
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.string   "jira_key"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "completed_at"
+    t.integer  "status"
+    t.decimal  "story_points"
+    t.json     "jira_info"
+    t.integer  "project_id"
+    t.integer  "project_sprint_id"
+    t.integer  "assignee_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["assignee_id"], name: "index_issues_on_assignee_id", using: :btree
+    t.index ["project_id", "jira_key"], name: "index_issues_on_project_id_and_jira_key", unique: true, using: :btree
+    t.index ["project_id"], name: "index_issues_on_project_id", using: :btree
+    t.index ["project_sprint_id"], name: "index_issues_on_project_sprint_id", using: :btree
   end
 
   create_table "project_members", force: :cascade do |t|
@@ -77,6 +96,9 @@ ActiveRecord::Schema.define(version: 20170717135126) do
   end
 
   add_foreign_key "developers", "departments"
+  add_foreign_key "issues", "developers", column: "assignee_id", on_delete: :nullify
+  add_foreign_key "issues", "project_sprints", on_delete: :nullify
+  add_foreign_key "issues", "projects", on_delete: :cascade
   add_foreign_key "project_members", "developers"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_sprint_member_details", "project_members"

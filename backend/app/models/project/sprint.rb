@@ -28,9 +28,13 @@
 class Project::Sprint < ApplicationRecord
 
   belongs_to :project
+
   has_many :member_details, class_name: 'Project::Sprint::MemberDetail',
                             foreign_key: :project_sprint_id,
                             dependent: :destroy
+
+  has_many :issues,         class_name: 'Project::Issue', dependent: :nullify
+
 
   enum status: [:active, :closed]
 
@@ -38,7 +42,7 @@ class Project::Sprint < ApplicationRecord
     project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
   end
 
-  def jira_info
+  def jira_client
     @jira_info ||= Jira::Resources::Project::Sprint.new(id: jira_key, project_key: project.jira_key)
   end
 

@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount RademadeAdmin::Engine => '/admin'
   namespace :rademade_admin, path: 'admin' do
-    admin_resources :departments
-    admin_resources :developers
-    admin_resources :projects do
-     
-    end
+    # admin_resources :departments
+    # admin_resources :developers
+    # admin_resources :projects do
+    #
+    # end
     # admin_resources :project_member
     # admin_resources :project_member
   end

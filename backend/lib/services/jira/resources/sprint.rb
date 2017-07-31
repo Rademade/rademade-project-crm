@@ -36,7 +36,8 @@ class Jira::Resources::Project::Sprint
     #             "customfield_10022" => nil
     #         }
     # },
-    @data ||= @client.Sprint.find(id, { fields: ['customfield_10016', 'customfield_10022', 'assignee'] })
+    # @data ||= @client.Sprint.find(id, { fields: ['customfield_10016', 'customfield_10022', 'assignee'] })
+    @data ||= @client.Sprint.find(id)
   end
 
   def status
@@ -52,7 +53,7 @@ class Jira::Resources::Project::Sprint
   end
 
   def users
-  #   [{ email: 'andrey@rademad.com', story_points}]
+    # [{ email: 'andrey@rademad.com', story_points }]
   end
 
   def total_story_points

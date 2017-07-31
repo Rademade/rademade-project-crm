@@ -13,8 +13,9 @@ module Jira
       end
 
       def call
-        sprint.member_details.destroy_all
-        sprint.update!(update_attributes)
+        update_issues
+
+        # sprint.update!(update_attributes)
       end
 
       def update_attributes
@@ -24,7 +25,8 @@ module Jira
           end_at:             jira_sprint.end_at,
           sprint_story_point: jira_sprint.total_story_points,
           status:             jira_sprint.status,
-          member_details_attributes: member_details_attributes
+          member_details_attributes: member_details_attributes,
+          issues_attributes:  issues_attributes
         }.compact
       end
 
@@ -40,6 +42,17 @@ module Jira
             # task_count: user[:tast_count]
           }
         end
+      end
+
+      def update_issues
+        jira_sprint.issues.map do |issue|
+          pry binding
+          sprint.issues.create_with({
+            jira_info: issue.data
+
+           }).find_or_create_by!(issue.jira_key)
+        end
+
       end
 
     end
