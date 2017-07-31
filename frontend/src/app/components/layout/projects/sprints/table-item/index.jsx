@@ -10,8 +10,11 @@ const SprintTableItem = ({ sprint, onUpdate }) => (
     <th>{sprint.sprintStoryPoint}</th>
     <th>{sprint.completeSp}</th>
     <th>{sprint.totalStoryPoints}</th>
-    <th>{sprint.complete}</th>
-    <th>{sprint.togglTime}</th>
+    <th>{sprint.completeStoryPoints}</th>
+    <th>{sprint.toggleTime}</th>
+    <th>
+      <Link to={ `/projects/${sprint.projectId}/sprints/${sprint.id}/edit` }>Edit</Link>
+    </th>
     <th>
       <button onClick={onUpdate}>Update</button>
     </th>

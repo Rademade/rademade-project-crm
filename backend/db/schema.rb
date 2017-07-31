@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731112523) do
+ActiveRecord::Schema.define(version: 20170731135129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,8 +66,9 @@ ActiveRecord::Schema.define(version: 20170731112523) do
   create_table "project_sprint_member_details", force: :cascade do |t|
     t.integer  "project_sprint_id"
     t.integer  "project_member_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "time",              default: 0
     t.index ["project_member_id"], name: "index_project_sprint_member_details_on_project_member_id", using: :btree
     t.index ["project_sprint_id", "project_member_id"], name: "by_sprint_member", unique: true, using: :btree
     t.index ["project_sprint_id"], name: "index_project_sprint_member_details_on_project_sprint_id", using: :btree

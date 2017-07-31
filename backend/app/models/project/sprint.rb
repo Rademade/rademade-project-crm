@@ -24,6 +24,7 @@
 #
 #  fk_rails_1a3f849b20  (project_id => projects.id)
 #
+require 'project'
 
 class Project::Sprint < ApplicationRecord
 
@@ -45,7 +46,7 @@ class Project::Sprint < ApplicationRecord
   enum status: [:active, :closed]
 
   def complete_sp
-    project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
+    @complete_sp ||= project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
   end
 
   def jira_client
@@ -57,7 +58,7 @@ class Project::Sprint < ApplicationRecord
   end
 
   def toggle_time
-    @toggle_time ||= member_details.sum(&:toggle_time)
+    @toggle_time ||= member_details.sum(&:time)
   end
 
 end

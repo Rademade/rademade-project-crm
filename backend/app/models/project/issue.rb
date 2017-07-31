@@ -30,6 +30,8 @@
 #  fk_rails_ff669b5916  (assignee_id => developers.id)
 #
 
+require 'project'
+
 class Project::Issue < ApplicationRecord
 
   self.table_name = 'issues'

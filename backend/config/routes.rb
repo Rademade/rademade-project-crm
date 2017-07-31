@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :project do
-      resources :sprints, only: [:index]
+      resources :sprints, only: [:index, :show]
     end
 
     resources :developers

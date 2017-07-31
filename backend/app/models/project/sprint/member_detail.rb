@@ -7,6 +7,7 @@
 #  project_member_id :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  time              :integer          default(0)
 #
 # Indexes
 #
@@ -33,8 +34,11 @@ class Project::Sprint::MemberDetail < ApplicationRecord
   validates :sprint, :member, presence: true
 
   def toggle_time
-    pry binding
     @toggle_time ||= member.toggle_time(sprint.start_at, (sprint.end_at || DateTime.current))
+  end
+
+  def update_time
+    update!(time: toggle_time)
   end
 
 end

@@ -38,7 +38,7 @@ module Jira
 
       def update_member_details
         ::Project::Member.where(developer_id: sprint.developer_ids).each do |member|
-          member.member_details.find_or_create_by!(project_sprint_id: sprint.id)
+          member.member_details.find_or_create_by!(project_sprint_id: sprint.id).update_time
         end
       end
 
