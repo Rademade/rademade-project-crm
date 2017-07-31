@@ -33,11 +33,10 @@ module Jira
         @sprints ||= boards.map { |board| board.sprints }.flatten.uniq { |sprint| sprint.id }
       end
 
-      def issues
+      def issues(start_at = 0)
         return @issues if @issues
         @issues ||= []
         exists = true
-        start_at = 0
         while exists
           step = 500
           issues = data.issues({ startAt: start_at, maxResults: step }).map do |issue|

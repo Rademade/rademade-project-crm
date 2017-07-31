@@ -3,15 +3,20 @@
 # Table name: issues
 #
 #  id                :integer          not null, primary key
-#  jira_info         :json
 #  jira_key          :string
+#  start_at          :datetime
+#  end_at            :datetime
+#  completed_at      :datetime
+#  status            :integer
+#  story_points      :decimal(, )
+#  jira_info         :json
 #  project_id        :integer
 #  project_sprint_id :integer
 #  assignee_id       :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
-# Indexesee
+# Indexes
 #
 #  index_issues_on_assignee_id              (assignee_id)
 #  index_issues_on_project_id               (project_id)
@@ -24,9 +29,12 @@
 #  fk_rails_e884c3e824  (project_sprint_id => project_sprints.id)
 #  fk_rails_ff669b5916  (assignee_id => developers.id)
 #
+
 class Project::Issue < ApplicationRecord
 
   self.table_name = 'issues'
+
+  scope :estimated, proc { where.not(story_points: nil) }
 
   belongs_to :project
 

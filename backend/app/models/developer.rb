@@ -9,6 +9,7 @@
 #  department_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  email         :string
 #
 # Indexes
 #
@@ -26,7 +27,12 @@ class Developer < ApplicationRecord
   has_many :project_members, class_name: 'Project::Member',
                              dependent: :destroy
 
-  validates :toggl_api_key, :department, presence: true
+  has_many :issues, class_name: 'Project::Issue',
+                    foreign_key: :assignee_id,
+                    dependent: :nullify
+
+  # validates :toggl_api_key, :department, presence: true
+  validates :email, uniqueness: true
 
   def toggl
     @toggl ||= DeveloperDetailsService.new(toggl_api_key: toggl_api_key)

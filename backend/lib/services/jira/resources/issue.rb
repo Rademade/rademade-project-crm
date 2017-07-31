@@ -20,6 +20,10 @@ module Jira
     #     }
     # }
 
+      def id
+        @data['id']
+      end
+
       def initialize(data)
         @data = data
       end
@@ -34,6 +38,10 @@ module Jira
 
       def completed_at
         info['completeDate']
+      end
+
+      def status
+        info['state']&.downcase
       end
 
       def active?
@@ -55,6 +63,7 @@ module Jira
       def assignee
         return @assignee if @assignee
         _assignee = @data['fields']['assignee']
+        return unless _assignee
         @assignee = {
           email: _assignee['emailAddress']
         }

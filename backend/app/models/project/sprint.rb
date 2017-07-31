@@ -33,7 +33,9 @@ class Project::Sprint < ApplicationRecord
                             foreign_key: :project_sprint_id,
                             dependent: :destroy
 
-  has_many :issues,         class_name: 'Project::Issue', dependent: :nullify
+  has_many :issues,         class_name: 'Project::Issue',
+                            foreign_key: :project_sprint_id,
+                            dependent: :nullify
 
 
   enum status: [:active, :closed]

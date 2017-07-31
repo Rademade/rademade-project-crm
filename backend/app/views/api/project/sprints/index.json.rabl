@@ -15,9 +15,9 @@ node(:complete_story_points) do |sprint|
 end
 
 node(:total_story_points) do |sprint|
-  sprint.project.story_points
+  sprint.project.total_story_points
 end
 
 node(:toggl_time) do |sprint|
-  # sprint.project.story_points
+  # sprint.project.total_story_points
 end

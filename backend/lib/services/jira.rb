@@ -6,3 +6,4 @@ require 'services/jira/resources/issue'
 
 require 'services/jira/sync/project'
 require 'services/jira/sync/sprint'
+require 'services/jira/sync/issue'
