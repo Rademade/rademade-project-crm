@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731090306) do
+ActiveRecord::Schema.define(version: 20170731112523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170731090306) do
     t.integer  "rate"
     t.integer  "hours"
     t.index ["developer_id"], name: "index_project_members_on_developer_id", using: :btree
+    t.index ["project_id", "developer_id"], name: "by_project_developer", unique: true, using: :btree
     t.index ["project_id"], name: "index_project_members_on_project_id", using: :btree
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170731090306) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["project_member_id"], name: "index_project_sprint_member_details_on_project_member_id", using: :btree
+    t.index ["project_sprint_id", "project_member_id"], name: "by_sprint_member", unique: true, using: :btree
     t.index ["project_sprint_id"], name: "index_project_sprint_member_details_on_project_sprint_id", using: :btree
   end
 

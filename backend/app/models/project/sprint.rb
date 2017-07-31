@@ -37,6 +37,10 @@ class Project::Sprint < ApplicationRecord
                             foreign_key: :project_sprint_id,
                             dependent: :nullify
 
+  has_many :developers, proc { all.distinct }, class_name: 'Developer',
+                                               through: :issues,
+                                               source: :assignee
+
 
   enum status: [:active, :closed]
 

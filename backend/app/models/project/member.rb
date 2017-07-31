@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  by_project_developer                   (project_id,developer_id) UNIQUE
 #  index_project_members_on_developer_id  (developer_id)
 #  index_project_members_on_project_id    (project_id)
 #
@@ -30,6 +31,8 @@ class Project::Member < ApplicationRecord
            class_name: 'Project::Sprint::MemberDetail',
            foreign_key: :project_member_id,
            dependent: :destroy
+
+  validates :project, :developer, presence: true
 
   def toggle
     @toggle ||= MemberDetailsService.new(self)

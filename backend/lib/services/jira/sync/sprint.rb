@@ -15,6 +15,8 @@ module Jira
       def call
         reload_issues
 
+        update_member_details
+
         update_sprint
       end
 
@@ -23,7 +25,9 @@ module Jira
           {
             name:               jira_sprint.name,
             sprint_story_point: sprint.issues.where.not(story_points: nil).sum(&:story_points),
-            status:             jira_sprint.status
+            status:             jira_sprint.status,
+            start_at:           jira_sprint.issues.first.start_at,
+            end_at:             jira_sprint.issues.first.completed_at
           }.compact
         )
       end
@@ -32,17 +36,14 @@ module Jira
         @sprint ||= project.sprints.find_or_create_by!(jira_key: jira_sprint.id)
       end
 
-      def member_details_attributes
-        jira_sprint.users.map do |user|
-          {
-            developer: Developer.create_with(name: user[:name]).find_by!(email: user[:email]),
-            story_points: user[:story_points]
-            # task_count: user[:tast_count]
-          }
+      def update_member_details
+        ::Project::Member.where(developer_id: sprint.developer_ids).each do |member|
+          member.member_details.find_or_create_by!(project_sprint_id: sprint.id)
         end
       end
 
       def reload_issues
+        return if sprint.closed?
         jira_sprint.issues.map do |jira_issue|
           ::Jira::Sync::Issue.new(jira_issue: jira_issue,
                                   sprint_id: sprint.id,

@@ -34,12 +34,12 @@ class Developer < ApplicationRecord
   # validates :toggl_api_key, :department, presence: true
   validates :email, uniqueness: true
 
-  def toggl
-    @toggl ||= DeveloperDetailsService.new(toggl_api_key: toggl_api_key)
+  def toggle
+    @toggle ||= DeveloperDetailsService.new(toggl_api_key: toggl_api_key)
   end
 
   def toggl_duration(start_at, end_at)
-    toggl.duration(start_at, end_at)
+    toggle.duration(start_at, end_at)
   end
 
 end
