@@ -22,3 +22,27 @@ end
 node(:toggle_time) do |sprint|
   Time.at(sprint.toggle_time).utc.strftime("%H:%M:%S")
 end
+
+child member_details: :developers do
+  attributes :id, :toggle_time
+
+  node(:toggle_time) do |member_detail|
+    Time.at(member_detail.toggle_time).utc.strftime("%H:%M:%S")
+  end
+
+  node(:name) do |member_detail|
+    member_detail.member.developer.name
+  end
+
+  node(:department) do |member_detail|
+    member_detail.member.developer.department.name
+  end
+
+  node(:planned_time) do |member_detail|
+    '?'
+  end
+
+  node(:percent) do |member_detail|
+    '?'
+  end
+end
