@@ -17,10 +17,10 @@ export default function sprint(state = initialState, action) {
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_SPRINT_SUCCESS:
-      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, project: action.item } };
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, sprint: action.item } };
 
     case GET_SPRINT_FAILURE:
-      return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, project: null };
+      return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, sprint: null };
 
     default:
       return state

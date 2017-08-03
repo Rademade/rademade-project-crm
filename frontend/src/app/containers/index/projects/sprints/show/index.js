@@ -5,24 +5,26 @@ import { bindActionCreators }            from 'redux'
 
 import sprintActions from 'actions/sprint'
 import getSprintState from 'selectors/sprint'
+import SprintBasicInfo from 'components/layout/projects/sprints/show/basic-info'
 
-const needToReloadSprint = ({ isLoadingPending, sprint, sprintId }) => {
+const needToReloadSprint = ({ isLoadingPending,  sprint, sprintId }) => {
   if (isLoadingPending) return false
   if (!sprint) return true
   if (sprint.id != sprintId) return true
 }
 
 const SprintShow = ({ sprintState, actions, sprintId }) => {
+
   if (needToReloadSprint({ sprintId: sprintId, ...sprintState })) {
     actions.getSprint(sprintId)
+    return (<div>Loading...</div>)
   }
 
   if (sprintState.isLoadingPending) {
     return (<div>Loading...</div>)
   }
-  
   return (
-    <div>Hola!dfdrererfdf</div>
+    <SprintBasicInfo sprint={sprintState.sprint}/>
   )
 }
 
