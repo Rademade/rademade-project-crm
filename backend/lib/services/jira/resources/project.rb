@@ -52,7 +52,7 @@ module Jira
 
       def total_story_points
         # TODO make custom request
-        issues.sum { |issue| issue.story_points || 0 }
+        @total_story_points ||= issues.sum { |issue| issue.story_points || 0 }
       end
 
       def complete_story_points

@@ -1,7 +1,7 @@
 class Api::Project::SprintsController < ApplicationController
 
   def index
-    @sprints = ::Project.find(params[:project_id]).sprints
+    @sprints = ::Project.find(params[:project_id]).sprints.joins({ :issues, member_details: { member: :developer } })
   end
 
   def show

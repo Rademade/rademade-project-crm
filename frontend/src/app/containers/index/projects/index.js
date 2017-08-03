@@ -29,7 +29,7 @@ class Projects extends Component {
          <ProjectList projects={ this.props.projects }/>
 
          <Route exact
-                path="/projects/all"
+                path="/projects"
                 component={ () => { return <Link to="/projects/new">Добавить</Link> } }/>
              
          <Route path='/projects/new'
