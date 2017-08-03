@@ -8,4 +8,9 @@ class Api::Project::SprintsController < ApplicationController
     @sprint = ::Project::Sprint.find(params[:id])
   end
 
+  def update
+    @sprint = ::Project::Sprint.find(params[:id])
+    @sprint.jira_sync
+  end
+
 end

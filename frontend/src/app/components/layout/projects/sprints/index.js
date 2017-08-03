@@ -30,7 +30,7 @@ class List extends Component {
             this.props.sprints.map((sprint) =>
               <SprintTableItem key={sprint.id}
                                sprint={sprint}
-                               onUpdate={ () => sprint.reload() }
+                               onUpdate={ () => sprint.update() }
                                />
             )
           }
