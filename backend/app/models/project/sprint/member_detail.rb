@@ -31,6 +31,12 @@ class Project::Sprint::MemberDetail < ApplicationRecord
   belongs_to :member, class_name: 'Project::Member',
                       foreign_key: :project_member_id
 
+  has_one :developer, class_name: 'Developer',
+                      through: :member
+
+  has_one :department, class_name: 'Department',
+                       through: :developer
+
   validates :sprint, :member, presence: true
 
 end

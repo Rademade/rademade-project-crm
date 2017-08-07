@@ -28,6 +28,10 @@ require 'project'
 
 class Project::Sprint < ApplicationRecord
 
+  scope :end_at, ->(end_at) {
+    where('end_at::timestamp <= ?::timestamp', end_at)
+  }
+
   belongs_to :project
 
   has_many :member_details, class_name: 'Project::Sprint::MemberDetail',
@@ -44,13 +48,5 @@ class Project::Sprint < ApplicationRecord
 
 
   enum status: [:active, :closed]
-
-  def complete_sp
-    @complete_sp ||= project.sprints.where('end_at::timestamp <= ?::timestamp', end_at).sum(&:sprint_story_point)
-  end
-
-  def jira_client
-    @jira_info ||= Jira::Resources::Project::Sprint.new(id: jira_key, project_key: project.jira_key)
-  end
 
 end

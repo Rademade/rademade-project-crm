@@ -1,6 +1,6 @@
 object @sprint
 
-attributes :id, :name, :sprint_story_point, :complete_sp, :project_id
+attributes :id, :name, :sprint_story_point, :project_id
 
 node(:start_at) do |sprint|
   sprint.start_at&.strftime("%d/%m/%Y")
@@ -10,9 +10,14 @@ node(:end_at) do |sprint|
   sprint.end_at
 end
 
-node(:complete_story_points) do |sprint|
-  proportion = (sprint.complete_sp / sprint.project.total_story_points).ceil(2) * 100
-  "#{proportion} %"
+complete_sp = Project::Sprint::CompleteSp.new(root_object)
+
+node(:complete_story_points) do |_sprint|
+  complete_sp.call
+end
+
+node(:complete_story_points) do |_sprint|
+  complete_sp.to_s
 end
 
 node(:total_story_points) do |sprint|
@@ -34,7 +39,7 @@ child member_details: :developers do
   end
 
   node(:department) do |member_detail|
-    member_detail.member.developer.department.name
+    member_detail.department.name
   end
 
   node(:planned_time) do |member_detail|
