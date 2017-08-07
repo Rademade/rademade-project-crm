@@ -107,6 +107,10 @@ GEM
     concurrent-ruby (1.0.5)
     configurations (2.2.2)
     debug_inspector (0.0.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     dry-auto_inject (0.4.2)
       dry-container (>= 0.3.4)
     dry-configurable (0.7.0)
@@ -268,6 +272,7 @@ DEPENDENCIES
   annotate!
   awesome_rails_console
   brakeman
+  dotenv-rails
   dry-system-rails
   hirb
   jira-ruby

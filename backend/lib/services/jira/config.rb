@@ -2,8 +2,8 @@ module Jira
   class Config
 
     OPTIONS = {
-      :username => 'andrey@rademade.com',
-      :password => '1abramow1',
+      :username => Rails.application.secrets.jira_username,
+      :password => Rails.application.secrets.jira_password,
       context_path: '',
       auth_type: :basic,
       :site     => 'http://rademade.atlassian.net:443/'
