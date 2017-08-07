@@ -33,12 +33,4 @@ class Project::Sprint::MemberDetail < ApplicationRecord
 
   validates :sprint, :member, presence: true
 
-  def toggle_time
-    @toggle_time ||= member.toggle_time(sprint.start_at, (sprint.end_at || DateTime.current))
-  end
-
-  def update_time
-    update!(time: toggle_time)
-  end
-
 end

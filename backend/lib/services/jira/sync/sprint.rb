@@ -37,11 +37,24 @@ module Jira
       end
 
       def update_member_details
-        ::Project::Member.where(developer_id: sprint.developer_ids).each do |member|
-          member.member_details.find_or_create_by!(project_sprint_id: sprint.id).update_time
+        project_members.each do |member|
+          update_member_detail_time(member_detail(member))
         end
       end
 
+      def update_member_detail_time(member_detail)
+        time = Toggle::MemberDetail.new(member_detail).toggle_time
+        member_detail.update!(time: time)
+      end
+
+      def project_members
+        @project_members ||= ::Project::Member.where(developer_id: sprint.developer_ids)
+      end
+
+      def member_detail(member)
+        member.member_details.find_or_create_by!(project_sprint_id: sprint.id)
+      end
+      
       def reload_issues
         return if sprint.closed?
         jira_sprint.issues.map do |jira_issue|

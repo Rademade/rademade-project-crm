@@ -8,6 +8,7 @@ module Jira
       end
 
       def initialize(key)  # H24
+        @key = key
         @data = client.Project.find(key)
       end
 
@@ -22,7 +23,7 @@ module Jira
       end
 
       def agile
-        @agile ||= @data.client.Project.find('H24').client.Agile.all
+        @agile ||= @data.client.Project.find(@key).client.Agile.all
       end
 
       def active_sprint

@@ -53,12 +53,4 @@ class Project::Sprint < ApplicationRecord
     @jira_info ||= Jira::Resources::Project::Sprint.new(id: jira_key, project_key: project.jira_key)
   end
 
-  def jira_sync
-    Jira::Sync::Sprint.new(project: project, jira_key: jira_key).call
-  end
-
-  def toggle_time
-    @toggle_time ||= member_details.sum(&:time)
-  end
-
 end

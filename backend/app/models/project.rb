@@ -25,13 +25,4 @@ class Project < ApplicationRecord
 
   accepts_nested_attributes_for :project_members, allow_destroy: true
 
-
-  def jira_client
-    @jira_client ||= Jira::Resources::Project.new(jira_key)
-  end
-
-  def jira_sync
-    Jira::Sync::Project.new(self).call
-  end
-
 end

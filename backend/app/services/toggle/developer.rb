@@ -1,7 +1,7 @@
-class DeveloperDetailsService
+class Toggle::Developer
 
-  def initialize(toggl_api_key:)
-    @toggl_api_key = toggl_api_key
+  def initialize(toggl_api_key: nil, developer: nil)
+    @toggl_api_key = toggl_api_key || developer.toggl_api_key
   end
 
   def duration(start_at, end_at)

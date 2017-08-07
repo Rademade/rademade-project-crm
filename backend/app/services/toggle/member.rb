@@ -1,4 +1,4 @@
-class MemberDetailsService
+class Toggle::Member
 
   attr_reader :member
 
@@ -11,7 +11,7 @@ class MemberDetailsService
   end
 
   def entries(start_at, end_at)
-    @entries ||= @member.developer.toggle.entries(start_at, end_at)
+    @entries ||= Toggle::Developer.new(developer: @member.developer).entries(start_at, end_at)
       .select { |time_entry|
         time_entry.project_toggl_pid.to_s == @member.project.toggl_pid.to_s
     }

@@ -20,14 +20,13 @@ node(:total_story_points) do |sprint|
 end
 
 node(:toggle_time) do |sprint|
-  Time.at(sprint.toggle_time).utc.strftime("%H:%M:%S")
+  Toggle::Sprint.new(sprint).inspect
 end
 
 child member_details: :developers do
-  attributes :id, :toggle_time
-
+  
   node(:toggle_time) do |member_detail|
-    Time.at(member_detail.toggle_time).utc.strftime("%H:%M:%S")
+    Toggle::MemberDetail.new(member_detail).inspect
   end
 
   node(:name) do |member_detail|

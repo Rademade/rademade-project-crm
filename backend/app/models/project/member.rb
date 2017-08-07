@@ -34,12 +34,4 @@ class Project::Member < ApplicationRecord
 
   validates :project, :developer, presence: true
 
-  def toggle
-    @toggle ||= MemberDetailsService.new(self)
-  end
-
-  def toggle_time(start_at, end_at)
-    toggle.duration(start_at, end_at)
-  end
-
 end

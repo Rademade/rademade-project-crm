@@ -1,7 +1,7 @@
 class Api::Project::SprintsController < ApplicationController
 
   def index
-    @sprints = ::Project.find(params[:project_id]).sprints.joins({ :issues, member_details: { member: :developer } })
+    @sprints = ::Project.find(params[:project_id]).sprints
   end
 
   def show
@@ -10,7 +10,8 @@ class Api::Project::SprintsController < ApplicationController
 
   def update
     @sprint = ::Project::Sprint.find(params[:id])
-    @sprint.jira_sync
+    # Syncronize Jira sprint 
+    Jira::Sync::Sprint.new(project: @sprint.project, jira_key: @sprint.jira_key).call
   end
 
 end
