@@ -26,7 +26,11 @@ Rails.application.routes.draw do
     scope module: :project do
       resources :sprints, only: [:index, :show, :update]
     end
-
+    
+    namespace :jira_hooks do
+      resources :sprint_closed, only: :create 
+    end
+    
     resources :developers
     resources :departments
   end
