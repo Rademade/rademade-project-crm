@@ -11,6 +11,7 @@ module RademadeCRM
     config.to_prepare do
       require 'services/jira'
       require 'services/toggl'
+      require 'services/freshbooks'
     end
 
     # Settings in config/environments/* take precedence over those specified here.
