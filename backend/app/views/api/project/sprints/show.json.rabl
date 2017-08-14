@@ -47,7 +47,7 @@ child member_details: :developers do
   end
 
   node(:percent) do |member_detail|
-    ((member_detail.member.hours * 3600) / member_detail.time.to_f * 100).to_i
+    Inspect::MemberDetail::Percent.new(member_detail).call
   end
 
 end
