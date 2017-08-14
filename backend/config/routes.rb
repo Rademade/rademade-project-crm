@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     
     namespace :jira_hooks do
       resources :sprint_closed, only: :create 
+      resources :sprint_created, only: :create 
     end
     
     resources :developers
