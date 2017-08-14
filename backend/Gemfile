@@ -5,7 +5,8 @@ gem 'rails', '~> 5.0.1'
 gem 'dry-system-rails'
 
 gem 'jira-ruby', :require => 'jira-ruby'
-gem 'ruby-freshbooks', require: false
+# gem 'ruby-freshbooks', require: false
+gem 'freshbooks_client', github: 'andrey-abramow/freshbooks_client'
 gem 'rademade_admin', github: 'Rademade/rademade_admin', branch: 'feature/rails-5'
 gem 'pg'
 

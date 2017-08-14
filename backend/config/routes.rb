@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       resources :sprints, only: [:index, :show, :update]
     end
     
+    resources :sprint_invoices, only: [:show]
+    
     namespace :jira_hooks do
       resources :sprint_closed, only: :create 
       resources :sprint_created, only: :create 

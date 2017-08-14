@@ -57,6 +57,7 @@ module.exports = {
       routes:     path.resolve('src/app/routes'),
       assets:     path.resolve('src/assets'),
       models:     path.resolve('src/app/models'),
+      api:        path.resolve('src/app/api'),
       store:      path.resolve('src/app/store')
     }
   },

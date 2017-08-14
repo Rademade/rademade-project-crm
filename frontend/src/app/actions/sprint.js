@@ -1,5 +1,6 @@
 import navigation from 'actions/navigation'
 import Sprint from 'models/sprint'
+import Invoice from 'api/invoices'
 
 export default {
   loadSprints: (projectId) => (dispatch) => {
@@ -7,6 +8,9 @@ export default {
   },
   getSprint: (sprintId) => (dispatch) => {
     Sprint.get(sprintId)
+  },
+  getInvoicePdf: (sprintId) => (dispatch) => {
+    Invoice.get(sprintId)
   }
 }
 

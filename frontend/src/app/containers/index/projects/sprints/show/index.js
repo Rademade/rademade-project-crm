@@ -3,6 +3,7 @@ import React, { Component, PropTypes }   from 'react'
 import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
 
+import { Link } from 'react-router-dom'
 import sprintActions from 'actions/sprint'
 import getSprintState from 'selectors/sprint'
 import SprintBasicInfo from 'components/layout/projects/sprints/show/basic-info'
@@ -28,6 +29,7 @@ const SprintShow = ({ sprintState, actions, sprintId }) => {
     <div>
       <SprintBasicInfo sprint={sprintState.sprint}/>
       <SprintTeamInfo developers={sprintState.sprint.developers}/>
+      <Link className="navbar-brand" target="_blank" to={`/api/sprint_invoices/${sprintId}.pdf`}>Download Invoce</Link>
     </div>
   )
 }
