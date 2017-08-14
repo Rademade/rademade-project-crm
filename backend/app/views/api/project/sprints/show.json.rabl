@@ -29,7 +29,7 @@ node(:toggle_time) do |sprint|
 end
 
 child member_details: :developers do
-  
+
   node(:toggle_time) do |member_detail|
     Toggle::MemberDetail.new(member_detail).inspect
   end
@@ -43,10 +43,11 @@ child member_details: :developers do
   end
 
   node(:planned_time) do |member_detail|
-    '?'
+    TimeFormatter.sec_to_h_m(member_detail.member.hours * 3600)
   end
 
   node(:percent) do |member_detail|
-    '?'
+    ((member_detail.member.hours * 3600) / member_detail.time.to_f * 100).to_i
   end
+
 end

@@ -8,7 +8,7 @@ const TeamTableItem = ({ developer }) => (
     <th>{developer.name}</th>
     <th>{developer.toggleTime}</th>
     <th>{developer.plannedTime}</th>
-    <th>{developer.percent}</th>
+    <th>{developer.percent} %</th>
   </tr>
 );
 export default TeamTableItem

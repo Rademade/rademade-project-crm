@@ -9,7 +9,8 @@ class JiraHooksCreator
       project_key: JIRA_PROJECT_KEY,
       sprint_id: JIRA_SPRINT_ID
     },
-    ['jira:sprint_created'] => {
+    ['jira:sprint_created',
+     'jira:sprint_started'] => {
       controller: 'api/jira_hooks/sprint_created',
       action: :create,
       project_key: JIRA_PROJECT_KEY,
