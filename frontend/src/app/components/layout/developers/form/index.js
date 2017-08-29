@@ -1,84 +1,51 @@
 import React, { Component, PropTypes } from 'react'
-import { connect }                          from 'react-redux'
-import { bindActionCreators }               from 'redux'
-import getDepartments                       from 'selectors/departments'
-import { Route } from 'react-router'
-import _ from 'lodash'
-import Department from 'models/department'
-class DeveloperForm extends Component {
+import { connect }                     from 'react-redux'
+import { bindActionCreators }          from 'redux'
+import getDepartments                  from 'selectors/departments'
+import { Route }                       from 'react-router'
+import _                               from 'lodash'
+import Department                      from 'models/department'
+/*
+  redux-form dependencies
+*/
+import { Field, reduxForm } from 'redux-form';
 
-  constructor(props){
-    super(props)
-    if(_.isEmpty(this.props.departments)){
-      Department.query()
-    }
+const DeveloperForm = ({ handleSubmit, pristine, reset, submitting, departments }) => {
 
-    this.state = { ...this.props.developer }
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleDepartmentChange = this.handleDepartmentChange.bind(this)
-    this.submit = this.submit.bind(this)
-  }
-
-  submit(e){
-    e.preventDefault();
-    this.props.submit(this.state)
-  }
-  
-  handleDepartmentChange(event) {
-    this.setState({
-      department: _.find(this.props.departments, {id: event.target.value * 1})
-    });
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    });
-  }
-
-  render() {
-    if(_.isEmpty(this.props.departments)) { return <div>loading..</div> }
-    this.state.department = this.props.departments[0]
     return (
-      <form>
-        <fieldset>
+      <form onSubmit={handleSubmit}>
             
           <div className="form-group">
             <label htmlFor="disabledTextInput">Teammate name</label>
-            <input type="text"
-                   name="name"
-                   value={this.state.name}
-                   onChange={this.handleInputChange}
-                   className="form-control" placeholder="Teammate name"/>
+            <Field type="text"
+              name="name"
+              component="input"
+                   className="form-control"
+                   placeholder="Teammate name"/>
           </div>
           
           <div className="form-group">
             <label htmlFor="disabledTextInput">Toggl ID</label>
-            <input type="text"
+            <Field type="text"
                    name="togglApiKey"
-                   value={this.state.togglApiKey}
-                   onChange={this.handleInputChange}
-                   className="form-control" placeholder="Toggl ID"/>
+                   component="input"
+                   className="form-control"
+                   placeholder="Toggl ID"/>
           </div>
           <div className="form-group">
             <label htmlFor="exampleSelect1">Department</label>
-            <select className="form-control"
-                    value={this.state.department.id}
-                    onChange={this.handleDepartmentChange}
-                    id="exampleSelect1">
-              { this.props.departments.map((department)=> {
-                return <option onClick={() => this.handleDepartmentChange(department)}  value={department.id} key={department.id}>{department.name}</option>
+            <Field className="form-control"
+                   name="departmentId"
+                   component="select"
+                   id="exampleSelect1">
+              { departments.map((department)=> {
+                return <option value={department.id}>{department.name}</option>
               } )}
-            </select>
+            </Field>
           </div>
-            <button onClick={this.submit} type="submit" className="btn btn-primary">Add new project</button>
-        </fieldset>
+            <button type="submit" className="btn btn-primary">Add new project</button>
       </form>
     )
-  }
 
 }
 function mapStateToProps(state) {
@@ -93,7 +60,6 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeveloperForm)
+export default reduxForm({
+  form: 'DeveloperForm' // a unique identifier for this form
+})(DeveloperForm)

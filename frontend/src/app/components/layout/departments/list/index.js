@@ -13,7 +13,7 @@ class List extends Component {
   componentDidMount() {
     Department.query()
   }
-  
+   
   render() {
     const { departments, isLoadingPending } = this.props.departmentsState;
     if (isLoadingPending) { return (<div>Loading</div>)}

@@ -4,6 +4,10 @@ class Api::DepartmentsController < ApplicationController
     @departments = Department.all
   end
 
+  def show
+    @department = Department.find(params[:id])
+  end
+
   def create
     @department = Department.create!(department_params)
   end

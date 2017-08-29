@@ -1,24 +1,35 @@
 import React, { Component, PropTypes } from 'react'
-
 import { connect }                     from 'react-redux'
 import { bindActionCreators }          from 'redux'
-import departmentsActions               from 'actions/department'
+import  departmentsActions              from 'actions/departments'
+import DepartmentForm                  from 'components/layout/departments/form'
 
-import DepartmentForm from 'components/layout/departments/form'
+class DepartmentEdit extends Component {
 
-const DepartmentEdit = ({ department, actions }) => (
-  <DepartmentForm 
-    department={ this.props.department }
-    submit={ actions.saveDepartment }/>
-)
+  componentWillMount(){
+    let department = this.props.department.department
+    if (!department || this.props.id != department.id){
+      this.props.get()
+    }
+  }
 
-const mapStateToProps = (state) => {
-  return {}
+  render(){
+    return (
+      <DepartmentForm
+        department={this.props.department.department}
+        buttonName="Сохранить"
+        submit={ this.props.update }/>
+    )}
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state, ownProps) => {
+  return { id: ownProps.id, department: state.department }
+}
+
+const mapDispatchToProps = (dispatch, ownProps, state) => {
   return {
-    actions: bindActionCreators(Object.assign({ ...departmentsActions }), dispatch)
+    get: () => dispatch(departmentsActions.get(ownProps.id)),
+    update: (department) => dispatch(departmentsActions.update(department))
   }
 }
 

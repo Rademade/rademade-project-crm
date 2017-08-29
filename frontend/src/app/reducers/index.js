@@ -1,14 +1,28 @@
-import { combineReducers } from 'redux'
-import projectList from 'reducers/projects'
-import editProjectState     from 'reducers/project'
-import departmentsState from 'reducers/departments'
-import developersState from 'reducers/developers'
-import sprintList from 'reducers/sprints'
-import sprintState from 'reducers/sprint'
-
-import { routerReducer } from 'react-router-redux'
+import { combineReducers }                         from 'redux';
+import projectList                                 from 'reducers/projects';
+import editProjectState                            from 'reducers/project';
+import departmentsState                            from 'reducers/departments';
+import department                                  from 'reducers/department';
+import developersState                             from 'reducers/developers';
+import sprintList                                  from 'reducers/sprints';
+import sprintState                                 from 'reducers/sprint';
+import { combineForms, createForms, modelReducer } from 'react-redux-form';
+import { routerReducer }                           from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form'
 const rootReducer = combineReducers({
-  projectList, editProjectState, departmentsState, developersState, sprintList, router: routerReducer, sprintState
+  projectList,
+  editProjectState,
+  departmentsState,
+  developersState,
+  sprintList,
+  sprintState,
+  department,
+  router: routerReducer,
+  form: formReducer, 
+  forms: combineForms(
+    { department: {}, },
+    'forms'
+  )
 });
 
 export default rootReducer

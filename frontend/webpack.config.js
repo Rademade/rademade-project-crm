@@ -58,8 +58,9 @@ module.exports = {
       assets:     path.resolve('src/assets'),
       models:     path.resolve('src/app/models'),
       api:        path.resolve('src/app/api'),
-      store:      path.resolve('src/app/store')
-    }
+      store:      path.resolve('src/app/store'),
+      sagas:      path.resolve('src/app/sagas')
+}
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

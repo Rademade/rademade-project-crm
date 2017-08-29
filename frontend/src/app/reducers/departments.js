@@ -51,8 +51,8 @@ export default function departmentsState(state = initialState, action) {
       };
 
     case UPDATE_DEPARTMENT_SUCCESS:
-      let index  = _.findIndex(state.departments, { id: action.item.id })
-      state.departments[index] = action.item
+      let index  = _.findIndex(state.departments, { id: action.department.id })
+      state.departments[index] = action.department
       return {
         isLoadingPending: false,
         isLoadingError: false,

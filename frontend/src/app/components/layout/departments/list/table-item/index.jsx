@@ -6,7 +6,7 @@ const DepartmentTableItem =({ department, onDelete }) => (
   <tr>
     <th>{department.name}</th>
     <th>
-      <Link to={ `/departments/${department.id}` }>Edit</Link>
+      <Link to={ `/departments/${department.id}/edit` }>Edit</Link>
       <button onClick={onDelete}>Delete</button>
     </th>
   </tr>
