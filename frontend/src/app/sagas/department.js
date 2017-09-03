@@ -18,10 +18,10 @@ function* _update(action) {
    }
 }
 
-function* _create(department) {
+function* _create(action) {
    try {
-      const { data } = yield call(Department.create, department);
-      yield put({type: "CREATE_DEPARTMENT_SUCCESS", department: data});
+      const { data } = yield call(Department.create, action.department);
+      yield put({type: "CREATE_DEPARTMENT_SUCCESS", department: action.department });
    } catch (e) {
       yield put({type: "CREATE_DEPARTMENT_FAILURE", message: e.message});
    }

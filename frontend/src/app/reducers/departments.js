@@ -38,7 +38,7 @@ export default function departmentsState(state = initialState, action) {
         isLoadingPending: false,
         isLoadingError: false,
         isLoadingSuccess: true,
-        departments: [...state.departments, action.item ]
+        departments: [...state.departments, action.department ]
       };
 
     case DELETE_DEPARTMENT_SUCCESS:

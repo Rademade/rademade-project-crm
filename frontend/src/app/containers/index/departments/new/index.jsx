@@ -6,7 +6,7 @@ import DepartmentForm                  from 'components/layout/departments/form'
 
 const DepartmentNew = ({ actions }) => (
   <DepartmentForm
-    buttonName="Редактировать"
+    buttonName="Добавить"
     submit={ actions.create }/>
 )
 
