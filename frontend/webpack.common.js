@@ -1,32 +1,10 @@
-const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    //progress: true,
-    contentBase: './src',
-    host: '0.0.0.0',
-    port: 4000,
-    proxy: {
-            '/api/**': {
-                target: 'http://localhost:3000',
-                changeOrigin: true
-              }
-            }
-  },
   entry: {
-    //"hotServer": "webpack/hot/dev-server",
-    //webpackServer: 'webpack-dev-server/client?http://localhost:3000',
     path: path.resolve(__dirname, 'src/app.jsx')
 
-  },
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
-    filename: './bundle.js'
   },
   module: {
     loaders: [{
@@ -46,7 +24,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.jsx', '.js', '.css'],
-    //root: path.resolve('src'),
     alias: {
       components: path.resolve('src/app/components'),
       containers: path.resolve('src/app/containers'),
@@ -57,12 +34,18 @@ module.exports = {
       routes:     path.resolve('src/app/routes'),
       assets:     path.resolve('src/assets'),
       models:     path.resolve('src/app/models'),
+      sagas:      path.resolve('src/app/sagas'),
       api:        path.resolve('src/app/api'),
       store:      path.resolve('src/app/store'),
       sagas:      path.resolve('src/app/sagas')
 }
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: 'body',
+      filename: 'index.html'
+    })
   ]
 };
+

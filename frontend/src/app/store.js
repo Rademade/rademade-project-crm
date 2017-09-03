@@ -16,6 +16,21 @@ const middleware = routerMiddleware(history)
 const initialState = {
 };
 
+const debugMiddleware = [
+  apiMiddleware,
+  loggerMiddleware
+]
+const commonMiddleware = [
+  thunkMiddleware,
+  reactRouterMiddleware,
+  sagaMiddleware
+]
+let middlewares = [...debugMiddleware, ...commonMiddleware]
+
+if (process.env.NODE_ENV == 'production') {
+  middlewares = commonMiddleware
+}
+
 let store = createStore(
   rootReducer,
   initialState,
