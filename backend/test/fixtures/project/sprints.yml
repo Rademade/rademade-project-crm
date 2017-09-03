@@ -1,0 +1,40 @@
+# == Schema Information
+#
+# Table name: project_sprints
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  project_id         :integer
+#  start_at           :datetime
+#  end_at             :datetime
+#  backlog_estimation :decimal(, )
+#  sprint_story_point :decimal(, )
+#  closed_story_point :decimal(, )
+#  time_spent         :decimal(, )
+#  status             :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  jira_key           :integer
+#
+# Indexes
+#
+#  index_project_sprints_on_project_id  (project_id)
+#
+# Foreign Keys
+#
+#  fk_rails_1a3f849b20  (project_id => projects.id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  project: one
+  date_start: 2017-01-24
+  date_end: 2017-01-24
+
+two:
+  name: MyString
+  project: two
+  date_start: 2017-01-24
+  date_end: 2017-01-24
