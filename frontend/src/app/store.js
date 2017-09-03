@@ -6,28 +6,37 @@ import rootReducer from 'reducers'
 import { routerReducer, routerMiddleware } from 'react-router-redux'
 import history from './history'
 
-//import 'babel-polyfill'
-//import createSagaMiddleware from 'redux-saga'
-//import rootSaga from './sagas/root'
-//const sagaMiddleware = createSagaMiddleware()
+import 'babel-polyfill'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas/root'
+const sagaMiddleware = createSagaMiddleware()
 
 const loggerMiddleware = createLogger();
-const middleware = routerMiddleware(history)
+const reactRouterMiddleware = routerMiddleware(history)
 const initialState = {
 };
+
+const debugMiddleware = [
+  apiMiddleware,
+  loggerMiddleware
+]
+const commonMiddleware = [
+  thunkMiddleware,
+  reactRouterMiddleware,
+  sagaMiddleware
+]
+let middlewares = [...debugMiddleware, ...commonMiddleware]
+
+if (process.env.NODE_ENV == 'production') {
+  middlewares = commonMiddleware
+}
 
 let store = createStore(
   rootReducer,
   initialState,
-  applyMiddleware(
-    apiMiddleware,
-    thunkMiddleware,
-    loggerMiddleware,
-    //sagaMiddleware,
-    middleware
-  )
+  applyMiddleware(...middlewares)
 );
 
-//sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga)
 
 export default store;
