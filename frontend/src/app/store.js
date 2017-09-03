@@ -12,7 +12,7 @@ import rootSaga from './sagas/root'
 const sagaMiddleware = createSagaMiddleware()
 
 const loggerMiddleware = createLogger();
-const middleware = routerMiddleware(history)
+const reactRouterMiddleware = routerMiddleware(history)
 const initialState = {
 };
 
@@ -34,13 +34,7 @@ if (process.env.NODE_ENV == 'production') {
 let store = createStore(
   rootReducer,
   initialState,
-  applyMiddleware(
-    apiMiddleware,
-    thunkMiddleware,
-    loggerMiddleware,
-    sagaMiddleware,
-    middleware
-  )
+  applyMiddleware(...middlewares)
 );
 
 sagaMiddleware.run(rootSaga)
