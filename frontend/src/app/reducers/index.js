@@ -2,6 +2,7 @@ import { combineReducers }                         from 'redux';
 import projectList                                 from 'reducers/projects';
 import editProjectState                            from 'reducers/project';
 import departmentsState                            from 'reducers/departments';
+import developer                                  from 'reducers/developer';
 import department                                  from 'reducers/department';
 import developersState                             from 'reducers/developers';
 import sprintList                                  from 'reducers/sprints';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   sprintList,
   sprintState,
   department,
+  developer,
   router: routerReducer,
   form: formReducer, 
   forms: combineForms(

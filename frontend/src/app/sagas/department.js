@@ -1,6 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import Department from 'api/departments'
 
+function* _query() {
+   try {
+      const { data } = yield call(Department.query);
+      yield put({type: "GET_DEPARTMENTS_SUCCESS", departments: data });
+   } catch (e) {
+      yield put({type: "GET_DEPARTMENTS_FAILURE", message: e.message});
+   }
+}
 function* _get(id) {
    try {
       const { data } = yield call(Department.get, id);
@@ -29,6 +37,7 @@ function* _create(action) {
 
 function* departmentSaga() {
   yield takeLatest("GET_DEPARTMENT_REQUEST"    , _get);
+  yield takeLatest("GET_DEPARTMENTS_REQUEST"    , _query);
   yield takeLatest("CREATE_DEPARTMENT_REQUEST" , _create);
   yield takeLatest("UPDATE_DEPARTMENT_REQUEST" , _update);
 }

@@ -28,7 +28,7 @@ export default function departmentsState(state = initialState, action) {
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_DEPARTMENTS_SUCCESS:
-      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, departments: [...action.items] } };
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, departments: [...action.departments] } };
 
     case GET_DEPARTMENTS_FAILURE:
       return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, departments: [] };

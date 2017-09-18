@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-
 import { connect }                          from 'react-redux'
 import { bindActionCreators }               from 'redux'
 import getDevelopers                        from 'selectors/developers'
-
 import { Route } from 'react-router'
 import _ from 'lodash'
 import Project from 'models/project'

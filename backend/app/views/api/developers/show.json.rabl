@@ -1,6 +1,2 @@
 object @developer
-attributes :id, :name
-
-child department: :department do
-  extends('departments/create')
-end
+attributes :id, :name, :department_id, :toggl_api_key

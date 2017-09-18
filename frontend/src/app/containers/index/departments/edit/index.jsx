@@ -1,23 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import { connect }                     from 'react-redux'
 import { bindActionCreators }          from 'redux'
-import  departmentsActions              from 'actions/departments'
+import departmentsActions             from 'actions/departments'
 import DepartmentForm                  from 'components/layout/departments/form'
 
 class DepartmentEdit extends Component {
 
-  componentWillMount(){
+  componentWillMount() {
     let department = this.props.department.department
     if (!department || this.props.id != department.id){
       this.props.get()
     }
   }
 
-  render(){
+  render() {
     return (
       <DepartmentForm
-        department={this.props.department.department}
         buttonName="Сохранить"
+        department={this.props.department.department}
         submit={ this.props.update }/>
     )}
 }

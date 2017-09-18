@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { bindActionCreators }          from 'redux'
 const DepartmentForm = (props) => (
-      <Form
+    <Form
         model="forms.department"
         onSubmit={(department) => props.submit(department)}>
         <label htmlFor="forms.department.name">Department name:</label>
@@ -24,7 +24,7 @@ const DepartmentForm = (props) => (
         />
 
         <button type="submit" className="btn btn-primary">{props.buttonName}</button>
-      </Form>
+    </Form>
 )
 const mapStateToProps = (state, ownProps) => {
   return {}

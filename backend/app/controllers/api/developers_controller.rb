@@ -5,7 +5,7 @@ class Api::DevelopersController < ApplicationController
   end
 
   def show
-    @developer = Developer.find(params[:id]) 
+    @developer = Developer.find(params[:id])
   end
 
   def create
@@ -23,7 +23,7 @@ class Api::DevelopersController < ApplicationController
   end
 
   def developer_params
-    params.require(:developer).permit(:id, :name, :department_id, :toggl_api_key)
+    params.require(:developer).permit(:id, :name, :email, :department_id, :toggl_api_key)
   end
 
 end

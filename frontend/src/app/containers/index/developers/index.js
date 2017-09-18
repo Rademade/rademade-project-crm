@@ -9,21 +9,9 @@ import DevelopersList from 'components/layout/developers/list'
 import DeveloperNew from './new'
 import DeveloperEdit from './edit'
 
-import Developer from 'models/developer'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 class Developers extends Component {
-
-  constructor(props) {
-    super(props)
-    Developer.query()
-    this.getDeveloper = this.getDeveloper.bind(this)
-  }
-
-  getDeveloper(id){
-    return _.find(this.props.developers, { id: parseInt(id) } )
-  }
-
   render() {
     return (
       <div>
@@ -37,7 +25,7 @@ class Developers extends Component {
                component={ ({ match }) => { return <DeveloperNew/> } }/>
              
         <Route path='/developers/:id/edit'
-               component={ ({ match }) => { return <DeveloperEdit developer={ this.getDeveloper(match.params.id) } /> } }/>
+               component={ ({ match }) => { return <DeveloperEdit id={match.params.id} /> } }/>
       </div>
     )
   }

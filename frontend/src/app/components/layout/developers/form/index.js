@@ -1,65 +1,64 @@
-import React, { Component, PropTypes } from 'react'
-import { connect }                     from 'react-redux'
-import { bindActionCreators }          from 'redux'
-import getDepartments                  from 'selectors/departments'
-import { Route }                       from 'react-router'
-import _                               from 'lodash'
-import Department                      from 'models/department'
+import React, { Component, PropTypes } from  'react'
+import { connect }                     from  'react-redux'
+import { bindActionCreators }          from  'redux'
+import getDepartments                  from  'selectors/departments'
+import { Route }                       from  'react-router'
+import _                               from  'lodash'
+import Department                      from  'models/department'
 /*
   redux-form dependencies
 */
-import { Field, reduxForm } from 'redux-form';
+import { Form, Field, reduxForm } from  'redux-form';
+import renderField                from  'components/form/input'
+import FormSelect                from  'components/form/select'
 
-const DeveloperForm = ({ handleSubmit, pristine, reset, submitting, departments }) => {
+const validate = values => {
+  const errors = {}
+  if (!values.name) {
+    errors.name = 'Required'
+  } else if (values.name.length < 3) {
+    errors.name = 'Must be 4 characters or more'
+  }
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  if (!values.departmentId) {
+    errors.departmentId = 'Required'
+  }
+  return errors
+}
 
+const DeveloperForm = ({ handleSubmit, buttonName, load, pristine, reset, submitting, departments }) => {
     return (
-      <form onSubmit={handleSubmit}>
-            
-          <div className="form-group">
-            <label htmlFor="disabledTextInput">Teammate name</label>
-            <Field type="text"
-              name="name"
-              component="input"
-                   className="form-control"
-                   placeholder="Teammate name"/>
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="disabledTextInput">Toggl ID</label>
-            <Field type="text"
-                   name="togglApiKey"
-                   component="input"
-                   className="form-control"
-                   placeholder="Toggl ID"/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleSelect1">Department</label>
-            <Field className="form-control"
-                   name="departmentId"
-                   component="select"
-                   id="exampleSelect1">
-              { departments.map((department)=> {
-                return <option value={department.id}>{department.name}</option>
-              } )}
-            </Field>
-          </div>
-            <button type="submit" className="btn btn-primary">Add new project</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Field type="text"
+               name="name"
+               component={renderField}
+               label="Teammate name"/>
+        <Field type="text"
+               name="togglApiKey"
+               component={renderField}
+               label="Toggl ID"/>
+        <Field type="email"
+               name="email"
+               component={renderField}
+               label="Email"/>
+        <Field name="departmentId"
+               label="Отеделение"
+               getValue={ (item) => item.id }
+               component={FormSelect}
+               items={departments}
+               inspect={ (item) => item.name }>
+        </Field>
+        <button type="submit" className="btn btn-primary">{buttonName}</button>
+      </Form>
     )
-
-}
-function mapStateToProps(state) {
-  return {
-     departments: getDepartments(state).departments
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Object.assign({}), dispatch)
-  }
 }
 
 export default reduxForm({
-  form: 'DeveloperForm' // a unique identifier for this form
+  form: 'DeveloperForm', // a unique identifier for this form
+  enableReinitialize: true,
+  validate
 })(DeveloperForm)

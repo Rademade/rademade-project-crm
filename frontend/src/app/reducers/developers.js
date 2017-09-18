@@ -22,7 +22,7 @@ export default function developersState(state = initialState, action) {
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_DEVELOPERS_SUCCESS:
-      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, developers: [...action.items] } };
+      return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, developers: [...action.developers] } };
 
     case GET_DEVELOPERS_FAILURE:
       return { ...state, ...{ isLoadingPending: false, isLoadingError: true, isLoadingSuccess: false }, developers: [] };
@@ -32,11 +32,11 @@ export default function developersState(state = initialState, action) {
         isLoadingPending: false,
         isLoadingError: false,
         isLoadingSuccess: true,
-        developers: [...state.developers, action.item ]
+        developers: [...state.developers, action.developer ]
       };
 
     case DELETE_DEVELOPER_SUCCESS:
-      _.remove(state.developers, { id: action.id })
+      _.remove(state.developers, { id: action.developerId })
       return {
         isLoadingPending: false,
         isLoadingError: false,
@@ -45,8 +45,8 @@ export default function developersState(state = initialState, action) {
       };
 
     case UPDATE_DEVELOPER_SUCCESS:
-      let index  = _.findIndex(state.developers, { id: action.item.id })
-      state.developers[index] = action.item
+      let index  = _.findIndex(state.developers, { id: action.developer.id })
+      state.developers[index] = action.developer
       return {
         isLoadingPending: false,
         isLoadingError: false,

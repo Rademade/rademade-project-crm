@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-
 import { connect }                       from 'react-redux'
 import { bindActionCreators }            from 'redux'
 import getDashboard                       from 'selectors/dashboard'
-
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import ProjectDashboard from 'components/layout/bashboard/projects'
