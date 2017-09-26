@@ -1,20 +1,43 @@
-import React, { PropTypes } from 'react'
-import { connect }                       from 'react-redux'
-import { bindActionCreators }            from 'redux'
-import projectActions from 'actions/project'
-import ProjectForm from 'components/layout/projects/form'
+import React, { PropTypes, Component } from  'react'
+import { connect }                     from  'react-redux'
+import { bindActionCreators }          from  'redux'
+import projectActions                  from  'actions/project'
+import developersActions               from  'actions/developer'
+import ProjectForm                     from  'components/layout/projects/form'
 
-const ProjectNew = ({ actions }) => (
-  <ProjectForm
-    project={ {} }
-    submit={ actions.saveProject }/>
-)
+class ProjectNew extends Component {
 
-function mapStateToProps(state) { return {} }
+  componentWillMount() {
+    const developersState = this.props.developersState;
+    if (!developersState.isLoadingPending && _.isEmpty(developersState.departments)) {
+      this.props.actions.loadDevelopers();
+      return (<div>Loading...</div>)
+    };
+  }
 
-function mapDispatchToProps(dispatch) {
+  render() {
+    const developersState = this.props.developersState;
+    return (
+      <ProjectForm
+        developers={ developersState.developers }
+        buttonName="Добавить"
+        onSubmit={ this.props.actions.create }/>
+    )
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
   return {
-    actions: bindActionCreators(Object.assign({ ...projectActions }), dispatch)
+    developersState: state.developersState
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(Object.assign({
+    ...projectActions,
+    loadDevelopers: developersActions.query
+    }), dispatch)
   }
 }
 

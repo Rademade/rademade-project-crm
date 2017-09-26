@@ -29,8 +29,8 @@ function* _update(action) {
 
 function* _create(action) {
    try {
+      console.log('create');
       const { data } = yield call(Developer.create, action.developer);
-      console.log(data)
       yield put({type: "CREATE_DEVELOPER_SUCCESS", developer: data });
       yield put(navigation.toDevelopers());
    } catch (e) {

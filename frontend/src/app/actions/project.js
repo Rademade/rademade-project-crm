@@ -1,13 +1,33 @@
 import navigation from 'actions/navigation'
-import Project from 'models/project'
-
 export default {
-  saveProject: (project) => (dispatch) => {
-    new Project(project).save()
-    navigation.toProjects()(dispatch)
+  query: () => {
+    return {
+      type: 'GET_PROJECTS_REQUEST'
+    }
   },
-  getProject: (projectId) => (dispatch) => {
-    Project.get(projectId)
+  get: (id) => {
+    return {
+      type: 'GET_PROJECT_REQUEST',
+      id: id
+    }
+  },
+  update: (project) => {
+    return {
+      type: 'UPDATE_PROJECT_REQUEST',
+      project: project
+    } 
+  },
+  create: (project) => {
+    return {
+      type: 'CREATE_PROJECT_REQUEST',
+      project: project
+    } 
+  },
+  delete: (id) => {
+    return {
+      type: 'DELETE_PROJECT_REQUEST',
+      id: id
+    } 
   }
 }
 

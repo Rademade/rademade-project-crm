@@ -4,7 +4,6 @@ import { bindActionCreators }          from  'redux'
 import getDepartments                  from  'selectors/departments'
 import { Route }                       from  'react-router'
 import _                               from  'lodash'
-import Department                      from  'models/department'
 /*
   redux-form dependencies
 */

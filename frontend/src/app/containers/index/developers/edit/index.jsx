@@ -38,7 +38,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     id: ownProps.id,
     departmentsState: state.departmentsState,
-    developerState: state.developer,
+    developerState: state.developer
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

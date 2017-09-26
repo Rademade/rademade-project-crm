@@ -1,42 +1,40 @@
-import React, { Component } from 'react'
-import MemberListItem       from './member-list-item'
-import _                    from 'lodash'
-class ProjectMemberList extends Component {
+import React, { Component } from  'react'
+import _                    from  'lodash'
+import {Field}              from  'redux-form';
+import renderField          from  'components/form/input'
+import FormSelect           from  'components/form/select'
 
-  constructor(props){
-    super(props)
-    this.addNewMember = this.addNewMember.bind(this)   
-  }
-
-  addNewMember(e){
-    e.preventDefault()
-    this.props.onNew()
-  }
-  
-  onDelete(i){
-    this.props.onDelete(i)
-  } 
-
-  render() {
-      let members = _.reject(this.props.members, (member) => member._destroy)
-      return (
-        <div>
-          <span>Project Team</span>
-         { members.map((member, i) =>
-            <MemberListItem
-              member={member}
-              id={i}
-              key={i}
-              onChange={(member) => this.props.onMemberChange(i, member)}
-              onDelete={ () => this.onDelete(i) }
-              developers={this.props.developers}/> 
-              )
-          }
-         
-          <button onClick={this.addNewMember} type="submit" className="btn btn-primary">Add Teammate</button>
-        </div>
-      )
-  }
-
-}
+const ProjectMemberList = ({ 
+  fields,
+  developers,
+  label,
+  meta: { touched, error, warning }
+}) =>
+    <div>
+      <span>{label}</span>
+      { fields.map((member, i) =>
+        <li className="form-inline" key={i}>
+           <Field name={`${member}.developerId`}
+                  label="Developer"
+                  getValue={ (item) => item.id }
+                  component={FormSelect}
+                  items={developers}
+                  inspect={ (item) => item.name }/>
+           <Field type="text"
+                  name={`${member}.hours`}
+                  component={renderField}
+                  label="h/sprint"/>
+           <Field type="text"
+                  name={`${member}.rate`}
+                  component={renderField}
+                  label="per hour"/>
+           <button type="submit"
+                   onClick={() => fields.remove(i)}
+                   className="btn btn-default">Удалить</button>
+        </li>
+     )}
+     <button onClick={() => fields.push({})}
+             type="button"
+             className="btn btn-primary">Add Teammate</button>
+    </div>
 export default ProjectMemberList
