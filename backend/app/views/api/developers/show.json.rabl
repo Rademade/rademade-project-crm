@@ -1,2 +1,2 @@
 object @developer
-attributes :id, :name, :department_id, :toggl_api_key
+attributes :id, :name, :department_id, :toggl_api_key, :email
