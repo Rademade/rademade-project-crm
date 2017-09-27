@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: 'json' } do
+    namespace :jira_synchronize do
+      resources :projects, only: [:update]
+    end
     resources :projects, only: [:index, :show, :create, :update, :destroy] do
       # TODO hook from jira
       resource :sprints do

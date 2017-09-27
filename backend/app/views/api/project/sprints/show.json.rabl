@@ -16,7 +16,7 @@ node(:complete_story_points) do |_sprint|
   complete_sp.call
 end
 
-node(:complete_story_points) do |_sprint|
+node(:complete_story_points_rate) do |_sprint|
   complete_sp.to_s
 end
 

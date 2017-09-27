@@ -46,7 +46,7 @@ module Jira
       end
 
       def jira_client
-        @project.jira_client
+        @jira_client ||= Jira::Resources::Project.new(@project.jira_key)
       end
 
     end
