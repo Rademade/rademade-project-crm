@@ -54,7 +54,7 @@ module Jira
       def member_detail(member)
         member.member_details.find_or_create_by!(project_sprint_id: sprint.id)
       end
-      
+
       def reload_issues
         return if sprint.closed?
         jira_sprint.issues.map do |jira_issue|

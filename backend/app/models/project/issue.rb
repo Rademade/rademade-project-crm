@@ -25,9 +25,9 @@
 #
 # Foreign Keys
 #
-#  fk_rails_899c8f3231  (project_id => projects.id)
-#  fk_rails_e884c3e824  (project_sprint_id => project_sprints.id)
-#  fk_rails_ff669b5916  (assignee_id => developers.id)
+#  fk_rails_...  (assignee_id => developers.id) ON DELETE => nullify
+#  fk_rails_...  (project_id => projects.id) ON DELETE => cascade
+#  fk_rails_...  (project_sprint_id => project_sprints.id) ON DELETE => nullify
 #
 
 require 'project'

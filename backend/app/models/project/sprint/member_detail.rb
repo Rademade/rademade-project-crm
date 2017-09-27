@@ -17,8 +17,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_74ac87073c  (project_member_id => project_members.id)
-#  fk_rails_ef59019867  (project_sprint_id => project_sprints.id)
+#  fk_rails_...  (project_member_id => project_members.id)
+#  fk_rails_...  (project_sprint_id => project_sprints.id)
 #
 
 require 'project/sprint'

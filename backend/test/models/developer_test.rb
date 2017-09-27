@@ -9,6 +9,7 @@
 #  department_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  email         :string
 #
 # Indexes
 #
@@ -16,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_6a08b005ec  (department_id => departments.id)
+#  fk_rails_...  (department_id => departments.id)
 #
 
 require 'test_helper'

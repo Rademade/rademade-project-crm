@@ -22,6 +22,11 @@ const validate = values => {
   if (!values.togglPid) {
     errors.togglPid = 'Required'
   }
+  if (!values.jiraBoardId) {
+    errors.jiraBoardId = 'Required'
+  }
+
+    
   return errors
 }
 
@@ -40,9 +45,13 @@ const ProjectForm = ({ handleSubmit, buttonName, load, pristine, reset, submitti
                name="togglPid"
                component={renderField}
                label="Toggl ID"/>
+        <Field type="text"
+               name="jiraBoardId"
+               component={renderField}
+               label="Board Id"/>
         <FieldArray name="members"
-                    developers={developers}
-                    component={ProjectMemberList}/>
+               developers={developers}
+               component={ProjectMemberList}/>
         <button type="submit" className="btn btn-primary">{buttonName}</button>
       </Form>
     )

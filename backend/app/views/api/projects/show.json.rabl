@@ -1,5 +1,5 @@
 object @project
-attributes :id, :name, :toggl_pid, :jira_key
+attributes :id, :name, :toggl_pid, :jira_key, :jira_board_id
 
 child project_members: :members do
   extends('api/project_members/index')

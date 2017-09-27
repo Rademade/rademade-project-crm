@@ -22,8 +22,9 @@
 #
 # Foreign Keys
 #
-#  fk_rails_1a3f849b20  (project_id => projects.id)
+#  fk_rails_...  (project_id => projects.id)
 #
+
 require 'project'
 
 class Project::Sprint < ApplicationRecord

@@ -11,7 +11,7 @@ const ProjectTableItem = ({ project, onDelete, onUpdate }) => (
     </th>
     <th>
       <Link to={ `/projects/${project.id}/sprints` }>Sprints({project.sprintsCount})</Link>
-      <button onClick={onUpdate}>Update</button>
+      <button onClick={onUpdate}>Обновить</button>
     </th>
   </tr>
 )

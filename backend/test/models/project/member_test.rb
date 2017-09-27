@@ -12,13 +12,14 @@
 #
 # Indexes
 #
+#  by_project_developer                   (project_id,developer_id) UNIQUE
 #  index_project_members_on_developer_id  (developer_id)
 #  index_project_members_on_project_id    (project_id)
 #
 # Foreign Keys
 #
-#  fk_rails_c1a9ac14e5  (developer_id => developers.id)
-#  fk_rails_f3b43b5269  (project_id => projects.id)
+#  fk_rails_...  (developer_id => developers.id)
+#  fk_rails_...  (project_id => projects.id)
 #
 
 require 'test_helper'

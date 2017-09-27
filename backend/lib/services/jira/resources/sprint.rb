@@ -45,11 +45,11 @@ class Jira::Resources::Project::Sprint
   end
 
   def active?
-    @state == 'ACTIVE'
+    @state&.downcase == 'active'
   end
 
   def closed?
-    @state == 'CLOSED'
+    @state&.downcase == 'closed'
   end
 
   def users

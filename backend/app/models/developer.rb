@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_6a08b005ec  (department_id => departments.id)
+#  fk_rails_...  (department_id => departments.id)
 #
 
 class Developer < ApplicationRecord

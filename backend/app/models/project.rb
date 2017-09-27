@@ -10,6 +10,7 @@
 #  updated_at         :datetime         not null
 #  jira_key           :string
 #  total_story_points :decimal(, )      default(0.0)
+#  jira_board_id      :integer
 #
 
 class Project < ApplicationRecord

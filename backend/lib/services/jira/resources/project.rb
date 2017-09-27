@@ -7,8 +7,9 @@ module Jira
         Jira::Config.client.Project.all({}).map { |p| p.attrs['key'] }
       end
 
-      def initialize(key)  # H24
+      def initialize(key, jira_board_id)  # H24
         @key = key
+        @jira_board_id = jira_board_id
         @data = client.Project.find(key)
       end
 
@@ -16,14 +17,8 @@ module Jira
         @data
       end
 
-      def boards
-        @boards ||= agile['values'].map do |board|
-          Jira::Resources::Project::Board.new(id: board['id'], name: board['name'], client: @data.client)
-        end
-      end
-
       def agile
-        @agile ||= @data.client.Project.find(@key).client.Agile.all
+        client.Agile
       end
 
       def active_sprint
@@ -31,7 +26,13 @@ module Jira
       end
 
       def sprints
-        @sprints ||= boards.map { |board| board.sprints }.flatten.uniq { |sprint| sprint.id }
+        @sprints ||= agile.get_sprints(@jira_board_id, { maxResults: 200 })['values'].map do |data|
+          Jira::Resources::Project::Sprint.new(id: data['id'],
+                                               name: data['name'],
+                                               client: @client,
+                                               state: data['state'])
+
+        end
       end
 
       def issues(start_at = 0)

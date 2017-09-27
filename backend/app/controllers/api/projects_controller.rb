@@ -29,7 +29,7 @@ class Api::ProjectsController < ApplicationController
     # https://github.com/rails/rails/pull/19254
     # https://github.com/rails/rails/issues/17216
     # param.require(:project).permit(:id, :name, :toggl_id, project_members_attributes: [:hours, :rate])
-    params.permit(:id, :name, :toggl_pid, :jira_key, project_members_attributes: [:id, :developer_id, :_destroy, :hours, :rate])
+    params.permit(:id, :name, :toggl_pid, :jira_key, :jira_board_id, project_members_attributes: [:id, :developer_id, :_destroy, :hours, :rate])
   end
 
 end

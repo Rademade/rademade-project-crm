@@ -18,8 +18,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_c1a9ac14e5  (developer_id => developers.id)
-#  fk_rails_f3b43b5269  (project_id => projects.id)
+#  fk_rails_...  (developer_id => developers.id)
+#  fk_rails_...  (project_id => projects.id)
 #
 
 class Project::Member < ApplicationRecord
