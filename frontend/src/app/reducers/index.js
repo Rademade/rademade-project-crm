@@ -4,6 +4,7 @@ import project                                     from  'reducers/project';
 import departmentsState                            from  'reducers/departments';
 import developer                                   from  'reducers/developer';
 import department                                  from  'reducers/department';
+import dashboard                                   from  'reducers/dashboard';
 import developersState                             from  'reducers/developers';
 import sprintList                                  from  'reducers/sprints';
 import sprintState                                 from  'reducers/sprint';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   sprintState,
   department,
   developer,
+  dashboard,
   router: routerReducer,
   form: formReducer, 
   forms: combineForms(

@@ -1,61 +1,43 @@
-import React, { Component } from 'react'
-import { connect }                       from 'react-redux'
-import { bindActionCreators }            from 'redux'
-import getDashboard                       from 'selectors/dashboard'
-import { Link } from 'react-router-dom'
-import _ from 'lodash'
-import ProjectDashboard from 'components/layout/bashboard/projects'
-import SprintShow from './sprints/show'
+import React, { Component }   from  'react'
+import { connect }            from  'react-redux'
+import { bindActionCreators } from  'redux'
+import DashboardProjects      from  'components/layout/projects/dashboard'
+import DashboardDevelopers    from  'components/layout/developers/dashboard'
+import dashboardActions       from  'actions/dashboard'
 
+class Dashboard extends Component {
 
-class Projects extends Component {
-
-  constructor(props) {
-    super(props);
-    Project.query()
+  componentWillMount(){
+    this.props.dashboardActions.get()
   }
 
   render() {
-
+    const dashboard = this.props.dashboard;
+    if (!dashboard.isLoadingSuccess) { return (<div>Идет загрузка...</div>) }
     return (
       <div>
-         <ProjectList projects={ this.props.projects }/>
-
-         <Route exact
-                path="/projects"
-                component={ () => { return <Link to="/projects/new">Добавить</Link> } }/>
-             
-         <Route path='/projects/new'
-                component={ ({ match }) => { return <ProjectNew/> } }/>
-              
-         <Route path='/projects/:id/edit'
-                exact
-                component={ ({ match }) => { return <ProjectEdit projectId={ match.params.id } /> } }/>
-
-         <Route path='/projects/:id/sprints'
-                exact
-                component={ ({ match }) => { return <ProjectSprints projectId={ match.params.id } /> } }/>
-
-         <Route path='/projects/:id/sprints/:sprintId/edit'
-                exact
-                component={ ({ match }) => { return <SprintShow sprintId={ match.params.sprintId } /> } }/>
+        <DashboardProjects
+          projects={ bashboard.projects }/>
+        <DashboardDevelopers 
+          developers={ dashboard.developers }
+          reload={ this.props.dashboardActions.reloadDevelopers }/>
       </div>
     )
   }
 }
 function mapStateToProps(state) {
   return {
-    projects: getProjects(state).projects
+    dashboard: state.dashboard
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}), dispatch)
+    dashboardActions: bindActionCreators(Object.assign({...dashboardActions}), dispatch)
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Projects)
+)(Dashboard)
