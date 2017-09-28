@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { Route } from 'react-router'
-import { Link } from 'react-router-dom'
+import React, { Component, PropTypes } from  'react'
+import { Route }                       from  'react-router'
+import { Link }                        from  'react-router-dom'
 
 const ProjectTableItem = ({ project, onDelete, onUpdate }) => (
   <tr>
