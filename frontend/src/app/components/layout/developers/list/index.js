@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-import { connect }            from 'react-redux'
-import { bindActionCreators } from 'redux'
-import getDevelopers          from 'selectors/developers'
-import developerActions      from 'actions/developer'
-import { Route }              from 'react-router'
-import DeveloperTableItem     from './table-item'
+import { connect }            from  'react-redux'
+import { bindActionCreators } from  'redux'
+import getDevelopers          from  'selectors/developers'
+import developerActions       from  'actions/developer'
+import { Route }              from  'react-router'
+import DeveloperTableItem     from  './table-item'
 class List extends Component {
 
   componentDidMount(){

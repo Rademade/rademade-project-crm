@@ -36,7 +36,7 @@ export default function developersState(state = initialState, action) {
       };
 
     case DELETE_DEVELOPER_SUCCESS:
-      _.remove(state.developers, { id: action.developerId })
+      _.remove(state.developers, { id: action.id })
       return {
         isLoadingPending: false,
         isLoadingError: false,

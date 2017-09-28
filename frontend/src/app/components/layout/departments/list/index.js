@@ -1,22 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-
-import { connect }                       from 'react-redux'
-import { bindActionCreators }            from 'redux'
-import getDepartments                    from 'selectors/departments'
-
-import { Route } from 'react-router'
-import DepartmentTableItem from './table-item'
-import Department from 'models/department'
-
+import React, { Component, PropTypes } from  'react'
+import { connect }                     from  'react-redux'
+import { bindActionCreators }          from  'redux'
+import getDepartments                  from  'selectors/departments'
+import { Route }                       from  'react-router'
+import DepartmentTableItem             from  './table-item'
+import departmentsActions               from  'actions/departments'
 class List extends Component {
 
   componentDidMount() {
-    Department.query()
+    this.props.actions.query()
   }
    
   render() {
     const { departments, isLoadingPending } = this.props.departmentsState;
     if (isLoadingPending) { return (<div>Loading</div>)}
+    const actions = this.props.actions
     return (
      <table className="table">
         <thead>
@@ -28,7 +26,7 @@ class List extends Component {
         <tbody>
           {
             departments.map((department) =>
-              <DepartmentTableItem key={department.id} department={department} onDelete={ () => department.delete() }/>
+              <DepartmentTableItem key={department.id} department={department} onDelete={ () => actions.delete(department.id) }/>
             )
           }
         </tbody>
@@ -45,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(Object.assign({}), dispatch)
+    actions: bindActionCreators(Object.assign({...departmentsActions}), dispatch)
   }
 }
 

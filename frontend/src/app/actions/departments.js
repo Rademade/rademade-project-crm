@@ -22,7 +22,12 @@ export default {
       type: 'CREATE_DEPARTMENT_REQUEST',
       department: department
     } 
+  },
+  delete: (id) => {
+    return {
+      type: 'DELETE_DEPARTMENT_REQUEST',
+      id: id
+    }
   }
-
 }
 
