@@ -3,13 +3,14 @@ import DashboardDeveloperTableItem     from  './table-item'
 const DashboardDevelopers = ({ actions, developers }) => (
   <div>
     <div>Teammage dashboard</div>
-    <div>datepicker</div>
+    <div>Datepicker</div>
     <table className="table">
        <thead>
          <tr>
            <th>Сотрудник</th>
-           <th>Отдел</th>
-           <th>Управление</th>
+           <th>Время по плану</th>
+           <th>Время по тоглy</th>
+           <th>%</th>
          </tr>
        </thead>
        <tbody>

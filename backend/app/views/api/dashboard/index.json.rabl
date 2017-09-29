@@ -24,5 +24,13 @@ child @projects => :projects do
 end
 
 child @developers => :developers do
-  attributes :id
+  attributes :name
+  
+  node(:toggle_time) do |developer|
+    if developer.toggl_api_key
+      now = DateTime.current
+      Toggle::Developer.new(developer: developer).duration(@from || now - 1.month, @to || now)
+    end
+  end
+
 end
