@@ -17,7 +17,7 @@ class Dashboard extends Component {
     return (
       <div>
         <DashboardProjects
-          projects={ bashboard.projects }/>
+          projects={ dashboard.projects }/>
         <DashboardDevelopers 
           developers={ dashboard.developers }
           reload={ this.props.dashboardActions.reloadDevelopers }/>

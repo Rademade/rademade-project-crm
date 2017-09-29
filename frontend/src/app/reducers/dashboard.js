@@ -16,15 +16,15 @@ export default function dashboard(state = initialState, action) {
   switch (action.type) {
 
     case GET_DASHBOARD_REQUEST:
-      return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
+      return { ...initialState, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
     case GET_DASHBOARD_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         isLoadingPending: false,
         isLoadingSuccess: true,
-        projects: aciton.projects,
-        developers: aciton.developers
+        projects: action.dashboard.projects,
+        developers: action.dashboard.developers
       };
     case GET_DASHBOARD_DEVELOPERS_SUCCESS:
       return {

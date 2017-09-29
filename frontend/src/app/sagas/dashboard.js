@@ -12,7 +12,7 @@ import {
 function* _get() {
    try {
       const { data } = yield call(Dashboard.get);
-      yield put({type: GET_DASHBOARD_SUCCESS, project: data});
+      yield put({type: GET_DASHBOARD_SUCCESS, dashboard: data});
    } catch (e) {
       yield put({type: GET_DASHBOARD_FAILURE, message: e.message});
    }
@@ -21,7 +21,7 @@ function* _getDevelopers(action) {
    try {
       const { data } = yield call(Dashboard.getDevelopers, action.month);
       yield put(navigation.toProjects());
-      yield put({type: GET_DASHBOARD_DEVELOPERS_SUCCESS, projects: data });
+      yield put({type: GET_DASHBOARD_DEVELOPERS_SUCCESS, developers: data });
    } catch (e) {
       yield put({type: GET_DASHBOARD_DEVELOPERS_FAILURE, message: e.message});
    }

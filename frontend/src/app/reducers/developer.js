@@ -18,6 +18,7 @@ export default function developer(state = initialState, action) {
     case GET_DEVELOPER_REQUEST:
       return { ...state, ...{ isLoadingPending: true, isLoadingError: false, isLoadingSuccess: false } };
 
+
     case GET_DEVELOPER_SUCCESS:
       return { ...state, ...{ isLoadingPending: false, isLoadingSuccess: true, developer: action.developer } };
 

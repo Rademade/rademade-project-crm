@@ -18,7 +18,7 @@ const DashboardProjectList = ({actions, projects}) => (
         <tbody>
           {
             projects.map((project) =>
-              <DashboardProjectTableItem 
+              <DashboardProjectTableItem
                 key={project.id}
                 project={project}
               />

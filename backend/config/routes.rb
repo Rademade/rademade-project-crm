@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :jira_synchronize do
       resources :projects, only: [:update, :create]
     end
+    resources :dashboard, only: [:index]
     resources :projects, only: [:index, :show, :create, :update, :destroy] do
       # TODO hook from jira
       resource :sprints do
