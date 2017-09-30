@@ -8,10 +8,12 @@ export default {
       type: GET_DASHBOARD_REQUEST
     }
   },
-  getProjects: (month) => {
+  getDevelopers: (dateRange) => {
+    let [from, to] = dateRange
     return {
       type: GET_DASHBOARD_DEVELOPERS_REQUEST,
-      month: month
+      from: from,
+      to: to
     }
   }
 }

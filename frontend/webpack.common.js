@@ -9,7 +9,6 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      include: path.resolve(__dirname, 'src'),
       loader: 'style-loader!css-loader'
     },{
       test: /\.scss$/,
@@ -38,7 +37,7 @@ module.exports = {
       api:        path.resolve('src/app/api'),
       store:      path.resolve('src/app/store'),
       sagas:      path.resolve('src/app/sagas')
-}
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

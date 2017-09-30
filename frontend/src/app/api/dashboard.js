@@ -1,12 +1,11 @@
 import http from './http'
 const API = '/dashboard'
-
-const _getDevelopersApi = (fromDate, toDate) => {
-  return `${API}/developers?from=${fromDate}&to=${toDate}`
+import qs from 'qs'
+const _getDevelopersApi = (params) => {
+  return `${API}/developers?${qs.stringify(params)}`
 }
-
 export default {
   get: () => http.get(API),
-  getDevelopers: (from, to) => http.get(_getDevelopersApi(from, to))
+  getDevelopers: (params) => http.get(_getDevelopersApi(params))
 }
 

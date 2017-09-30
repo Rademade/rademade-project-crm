@@ -29,7 +29,7 @@ export default function dashboard(state = initialState, action) {
     case GET_DASHBOARD_DEVELOPERS_SUCCESS:
       return {
         ...state,
-        developers: aciton.developers
+        developers: action.developers
       };
 
     case GET_DASHBOARD_FAILURE:

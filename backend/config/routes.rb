@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       resources :projects, only: [:update, :create]
     end
     resources :dashboard, only: [:index]
+    namespace :dashboard do
+      resources :developers, only: [:index]
+    end
     resources :projects, only: [:index, :show, :create, :update, :destroy] do
       # TODO hook from jira
       resource :sprints do

@@ -1,9 +1,19 @@
 import React, { Component, PropTypes } from  'react'
-import DashboardDeveloperTableItem     from  './table-item'
-const DashboardDevelopers = ({ actions, developers }) => (
+import 'flatpickr/dist/themes/material_green.css'
+import Flatpickr                   from  'react-flatpickr'
+import DashboardDeveloperTableItem from  './table-item'
+const DashboardDevelopers = ({ developers, reload }) => (
   <div>
-    <div>Teammage dashboard</div>
-    <div>Datepicker</div>
+    <div>Teammate dashboard</div>
+    <Flatpickr
+      options={ 
+        { 
+          mode: 'range',
+          maxDate: 'today'
+        }
+      }
+      onChange={(v) => reload(v)}
+    />
     <table className="table">
        <thead>
          <tr>
@@ -15,9 +25,9 @@ const DashboardDevelopers = ({ actions, developers }) => (
        </thead>
        <tbody>
          {
-           developers.map((developer) =>
+           developers.map((developer, index) =>
              <DashboardDeveloperTableItem
-               key={developer.id}
+               key={index}
                developer={developer}
              />
            )

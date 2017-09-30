@@ -19,8 +19,7 @@ function* _get() {
 }
 function* _getDevelopers(action) {
    try {
-      const { data } = yield call(Dashboard.getDevelopers, action.month);
-      yield put(navigation.toProjects());
+      const { data } = yield call(Dashboard.getDevelopers, { from: action.from, to: action.to });
       yield put({type: GET_DASHBOARD_DEVELOPERS_SUCCESS, developers: data });
    } catch (e) {
       yield put({type: GET_DASHBOARD_DEVELOPERS_FAILURE, message: e.message});

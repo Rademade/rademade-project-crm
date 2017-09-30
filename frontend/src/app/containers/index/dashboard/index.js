@@ -18,9 +18,9 @@ class Dashboard extends Component {
       <div>
         <DashboardProjects
           projects={ dashboard.projects }/>
-        <DashboardDevelopers 
+        <DashboardDevelopers
           developers={ dashboard.developers }
-          reload={ this.props.dashboardActions.reloadDevelopers }/>
+          reload={ this.props.dashboardActions.getDevelopers }/>
       </div>
     )
   }
