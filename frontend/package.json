@@ -31,7 +31,10 @@
     "redux-form": "^7.0.3",
     "redux-saga": "^0.15.3",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.0"
+    "reselect": "^3.0.0",
+    "webpack": "latest",
+    "webpack-merge": "^4.1.0"
+
   },
   "devDependencies": {
     "babel-core": "6.x",
@@ -60,8 +63,6 @@
     "sass-loader": "^6.0.3",
     "style-loader": "~0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "latest",
-    "webpack-dev-server": "latest",
-    "webpack-merge": "^4.1.0"
+    "webpack-dev-server": "latest"
   }
 }
