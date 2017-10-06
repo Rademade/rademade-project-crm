@@ -4,6 +4,7 @@ require 'mina/deploy'
 require 'mina/bundler'
 require 'mina/rvm'
 require 'mina/npm'
+require 'mina/puma'
 
 set :application_name, 'rademade_crm'
 set :port, 4002
@@ -50,15 +51,14 @@ task :deploy do
       command 'bundle install'
       invoke :'rails:db_migrate'
     end
-    invoke :'deploy:cleanup'
-    #
     in_path('frontend') do
       command 'npm install'
       command 'npm run deploy'
     end
+    invoke :'deploy:cleanup'
 
     on :launch do
-      # command "touch #{fetch(:deploy_to)}/#{fetch(:current_path)}/tmp/restart.txt"
+      command "touch #{fetch(:deploy_to)}/#{fetch(:current_path)}/tmp/restart.txt"
     end
   end
 end

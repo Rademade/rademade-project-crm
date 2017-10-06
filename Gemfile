@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.1'
 gem 'dry-system-rails'
 
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
+
 gem 'jira-ruby', :require => 'jira-ruby'
 # gem 'ruby-freshbooks', require: false
 gem 'freshbooks_client', github: 'andrey-abramow/freshbooks_client'

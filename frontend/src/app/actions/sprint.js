@@ -1,6 +1,6 @@
 import navigation from 'actions/navigation'
-import Sprint from 'models/sprint'
-import Invoice from 'api/invoices'
+import Sprint     from 'models/sprint'
+import Invoice    from 'api/invoices'
 
 export default {
   loadSprints: (projectId) => (dispatch) => {
