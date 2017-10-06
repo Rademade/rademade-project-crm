@@ -32,4 +32,5 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'mina', '~>1.0.0'
   gem 'mina-npm'
+  gem 'mina-puma'
 end
