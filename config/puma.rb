@@ -52,9 +52,9 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 unless ENV['RAILS_ENV'] == 'development'
   plugin :tmp_restart
 
-  ROOT = File.join __dir__, '..'
+  ROOT = File.expand_path('../', __FILE__)
 
-  bind 'unix://' + File.join(ROOT, 'tmp/sockets/webserver.socket')
+  bind 'unix://' + File.join(ROOT, '../tmp/sockets/webserver.socket')
 
   stdout_path = File.join ROOT, 'log/stdout'
   stderr_path = File.join ROOT, 'log/stderr'

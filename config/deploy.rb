@@ -15,7 +15,8 @@ set :branch, 'feature/deploy'
 set :shared_files, fetch(:shared_dirs, []).push('.env')
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
 set :forward_agent, true
-``
+set :puma_config, "#{fetch(:current_path)}/config/puma.rb"
+
 ruby_version = File.read(File.join __dir__, '../.ruby-version').chomp
 ruby_gemset = File.read(File.join __dir__, '../.ruby-gemset').chomp
 
