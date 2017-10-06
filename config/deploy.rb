@@ -12,6 +12,7 @@ set :domain, 'vm.rademade.com'
 set :deploy_to, '/home/rademade-crm/website-backend'
 set :repository, 'git@github.com:Rademade/rademade-project-crm.git'
 set :branch, 'feature/deploy'
+set :shared_files, ['.env']
 set :shared_paths, ['log']
 set :user, 'rademade-crm'
 
