@@ -12,7 +12,7 @@ set :forward_agent, true
 set :domain, 'vm.rademade.com'
 set :deploy_to, '/home/rademade-crm/website-backend'
 set :repository, 'git@github.com:Rademade/rademade-project-crm.git'
-set :branch, 'refactoring_forms'
+set :branch, 'feature/deploy'
 set :shared_paths, ['log']
 set :user, 'rademade-crm'
 
@@ -53,7 +53,7 @@ task :deploy do
     invoke :'deploy:cleanup'
     #
     in_path('frontend') do
-      command 'npm i'
+      command 'npm install'
       command 'npm run deploy'
     end
 
