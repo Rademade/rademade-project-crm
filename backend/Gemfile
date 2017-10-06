@@ -10,8 +10,7 @@ gem 'freshbooks_client', github: 'andrey-abramow/freshbooks_client'
 gem 'rademade_admin', github: 'Rademade/rademade_admin', branch: 'feature/rails-5'
 gem 'pg'
 
-gem 'togglv8'
-
+gem 'togglv8' 
 gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
@@ -28,4 +27,5 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'mina', '~> 0.3.8'
 end
