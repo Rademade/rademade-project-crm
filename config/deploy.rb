@@ -41,8 +41,7 @@ task :setup do
 end
 
 task :deploy do
-  invoke :environment
-
+  invoke :'git:ensure_pushed'
   deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
