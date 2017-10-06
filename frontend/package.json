@@ -30,13 +30,8 @@
     "redux": "^3.6.0",
     "redux-form": "^7.0.3",
     "redux-saga": "^0.15.3",
-    "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.0",
     "webpack": "latest",
-    "webpack-merge": "^4.1.0"
-
-  },
-  "devDependencies": {
+    "webpack-merge": "^4.1.0",
     "babel-core": "6.x",
     "babel-eslint": "7.x",
     "babel-loader": "6.x",
