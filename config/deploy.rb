@@ -54,7 +54,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      command "touch #{fetch(:deploy_to)}/#{fetch(:current_path)}/tmp/restart.txt"
+      invoke 'puma:restart'
     end
   end
 end

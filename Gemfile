@@ -17,10 +17,11 @@ gem 'togglv8'
 gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
+gem 'awesome_rails_console'
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'brakeman' 
-  gem 'awesome_rails_console'
   gem 'hirb'
   gem 'pry'
   gem 'pry-byebug'
