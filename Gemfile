@@ -4,21 +4,24 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.1'
 gem 'dry-system-rails'
 
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
+
 gem 'jira-ruby', :require => 'jira-ruby'
 # gem 'ruby-freshbooks', require: false
 gem 'freshbooks_client', github: 'andrey-abramow/freshbooks_client'
 gem 'rademade_admin', github: 'Rademade/rademade_admin', branch: 'feature/rails-5'
 gem 'pg'
 
-gem 'togglv8'
-
+gem 'togglv8' 
 gem 'rabl'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
+gem 'awesome_rails_console'
+gem 'dotenv-rails'
+
 group :development, :test do
-  gem 'dotenv-rails'
-  gem 'brakeman' 
-  gem 'awesome_rails_console'
+  gem 'brakeman'
   gem 'hirb'
   gem 'pry'
   gem 'pry-byebug'
@@ -28,4 +31,7 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'mina', '~>1.0.0'
+  gem 'mina-npm'
+  gem 'mina-puma'
 end
